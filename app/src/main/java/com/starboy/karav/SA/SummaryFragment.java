@@ -50,7 +50,7 @@ public class SummaryFragment extends Fragment {
 	}
 
 	private void getBundle() {
-		Bundle bundle = ((SummaryActivity) getActivity()).getBundle();
+		Bundle bundle = this.getArguments();
 		time = bundle.getInt("Time");
 		Log.d(TAG, Integer.toString(time));
 		grade = bundle.getInt("Level");

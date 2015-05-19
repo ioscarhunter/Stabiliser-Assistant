@@ -17,6 +17,11 @@ public class BluetoothActivity extends ColourBarActivity {
 	protected static final int REQUEST_ENABLE_BT = 3;
 	protected static final int REQUEST_GET_DEVICE = 2;
 	public static String EXTRA_DEVICE_ADDRESS = "device_address";
+	protected String update = "U";
+	protected String result = "R";
+	protected String timer = "T";
+	protected String summary = "S";
+	protected boolean connect;
 
 	/**
 	 * Name of the connected device
@@ -48,6 +53,7 @@ public class BluetoothActivity extends ColourBarActivity {
 							mConnectedDeviceName = null;
 							setStatusBarColour(R.color.status_noconnected);
 							setActionBarColour(getResources().getString(R.string.not_connected), R.color.title_noconnected);
+							connect = false;
 							break;
 					}
 					break;
@@ -70,6 +76,7 @@ public class BluetoothActivity extends ColourBarActivity {
 						Toast.makeText(activity, "Connected to " + mConnectedDeviceName, Toast.LENGTH_SHORT).show();
 						setStatusBarColour(R.color.title_connected);
 						setActionBarColour(getResources().getString(R.string.title_connected_to) + " " + mConnectedDeviceName, R.color.status_connected);
+						connect = true;
 					}
 					break;
 				case Constants.MESSAGE_TOAST:
@@ -88,7 +95,7 @@ public class BluetoothActivity extends ColourBarActivity {
 	 * Local Bluetooth adapter
 	 */
 	protected BluetoothAdapter mBluetoothAdapter = null;
-	private String TAG = " ";
+	private String TAG = "BluetoothActivity";
 	/**
 	 * String buffer for outgoing messages
 	 */
@@ -119,6 +126,7 @@ public class BluetoothActivity extends ColourBarActivity {
 			// Initialize the BluetoothChatService to perform bluetooth connections
 			mChatService = new BluetoothChatService(this, mHandler);
 		}
+		connect = false;
 	}
 
 	@Override
@@ -162,7 +170,7 @@ public class BluetoothActivity extends ColourBarActivity {
 	 *
 	 * @param message A string of text to send.
 	 */
-	protected void sendMessage(String message) {
+	public void sendMessage(String message) {
 		// Check that we're actually connected before trying anything
 		if (mChatService.getState() != BluetoothChatService.STATE_CONNECTED) {
 			Toast.makeText(getActivity(), R.string.not_connected, Toast.LENGTH_SHORT).show();

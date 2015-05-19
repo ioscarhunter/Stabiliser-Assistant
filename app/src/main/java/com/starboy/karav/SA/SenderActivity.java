@@ -14,7 +14,6 @@ import android.widget.TextView;
 public class SenderActivity extends BluetoothActivity {
 
 
-
 	private TextView display;
 	/**
 	 * The Handler that gets information back from the BluetoothChatService
@@ -31,7 +30,7 @@ public class SenderActivity extends BluetoothActivity {
 	private TextView status;
 	private int statusb = 0;
 	private int rating = 0;
-	private String update = "U";
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -132,7 +131,6 @@ public class SenderActivity extends BluetoothActivity {
 
 	}
 
-
 	private void displayMessagerecieve(String message) {
 		display.setText(message);
 	}
@@ -154,5 +152,26 @@ public class SenderActivity extends BluetoothActivity {
 		return SenderActivity.this;
 	}
 
-
+	@Override
+	protected void messageReceive(String s) {
+		displayMessagerecieve(s);
+		String receive[] = s.split(":");
+//		Log.d(TAG, s);
+		switch (receive[0]) {
+			case "T":
+				switch (receive[1]) {
+					case "S":
+						break;
+					case "R":
+						//resume
+						break;
+					case "P":
+						//pause
+						break;
+					case "B":
+						break;
+				}
+				break;
+		}
+	}
 }

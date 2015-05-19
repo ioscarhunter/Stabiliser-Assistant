@@ -42,17 +42,17 @@ public class ReceiverFragment extends Fragment {
 	private RatingBar rating;
 	private RelativeLayout status_layout;
 
-	private int grade;
+	private ReceiverActivity receiverActivity;
 
 	private int level;
 
+	private boolean firstTime;
 	private boolean timeOn;
 
 	private int currentColour;
-	private int balance;
 
 	private Animation anim;
-	private RecieverFragmentListener rListener;
+	private ReceiverFragmentListener rListener;
 
 	public ReceiverFragment() {
 	}
@@ -61,7 +61,7 @@ public class ReceiverFragment extends Fragment {
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
 		try {
-			rListener = (RecieverFragmentListener) activity;
+			rListener = (ReceiverFragmentListener) activity;
 		} catch (ClassCastException e) {
 			throw new ClassCastException(activity.toString() + " must implement OnArticleSelectedListener");
 		}
@@ -99,7 +99,9 @@ public class ReceiverFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		view = inflater.inflate(R.layout.fragment_receiver, container, false);
+		receiverActivity = ((ReceiverActivity) getActivity());
 		setupUI();
+		setupAnimate();
 		return view;
 	}
 
@@ -120,7 +122,7 @@ public class ReceiverFragment extends Fragment {
 			timer.stop();
 			setColourAnimation(start, R.color.clear, R.color.black, 100);//change to black
 			timer.startAnimation(anim);
-			//TODO sent pause message to sender
+			receiverActivity.sendMessage("T:" + "P");
 		} else {
 			start.setText(getResources().getString(R.string.pause));
 			timeOn = true;
@@ -130,7 +132,9 @@ public class ReceiverFragment extends Fragment {
 			timer.start();
 			setColourAnimation(start, R.color.black, R.color.clear, 100);
 			timer.clearAnimation();
-			//TODO sent start message to sender
+			if (!firstTime) {
+				receiverActivity.sendMessage("T:" + "R");
+			} else firstTime = false;
 		}
 	}
 
@@ -150,7 +154,6 @@ public class ReceiverFragment extends Fragment {
 		return stoppedSeconds;
 	}
 
-
 	private void stopTime() {
 
 		// stop countdown
@@ -158,18 +161,23 @@ public class ReceiverFragment extends Fragment {
 		int totalTime = timeStopped();
 		Log.d(TAG, totalTime + " ");
 		//TODO sent stop message to sender
+		receiverActivity.sendMessage("T:S:" + totalTime);
+		Fragment summary = new SummaryFragment();
 		Bundle extra = new Bundle();
 		extra.putInt("Time", totalTime);
 		extra.putInt("Level", level);
-		((ReceiverActivity) getActivity()).startNewActivity(SummaryActivity.class, extra);
+		summary.setArguments(extra);
+		receiverActivity.replaceFragment(summary, 3);
 	}
 
 	private void setupUI() {
+		firstTime = true;
 		status_tv = (TextView) view.findViewById(R.id.status);
 		status_level = (RelativeLayout) view.findViewById(R.id.ratingContainer);
 		minusSign = (TextView) view.findViewById(R.id.minusSign);
 
 		level = 5;
+
 		timeOn = false;
 		currentColour = R.color.c_l5;
 //		levelSelector = (LinearLayout) view.findViewById(R.id.levelselector);
@@ -200,7 +208,7 @@ public class ReceiverFragment extends Fragment {
 		Bundle bundle = this.getArguments();
 		final long setedTime = bundle.getLong("time");
 //            Log.d(TAG,"time = "+i);
-		int level = bundle.getInt("level");
+//		int level = bundle.getInt("level");
 
 		countdown = (Chronometer) view.findViewById(R.id.countdown);
 		countdown.setBase(SystemClock.elapsedRealtime() - setedTime);
@@ -225,10 +233,12 @@ public class ReceiverFragment extends Fragment {
 
 		});
 		timer.setBase(SystemClock.elapsedRealtime());
+		setLevel(level);
+		setStatus(0);
 		startTime();
 	}
 
-	private void setupAnimat() {
+	private void setupAnimate() {
 		//blink animation
 		anim = new AlphaAnimation(0.0f, 1.0f);
 		anim.setDuration(100); //You can manage the time of the blink with this parameter
@@ -304,10 +314,9 @@ public class ReceiverFragment extends Fragment {
 		colorAnimation.start();
 	}
 
-	public void updateData(int status, int grade) {
-		this.grade = grade;
-		this.balance = status;
-		setLevel(grade);
+	public void updateData(int status, int level) {
+		this.level = level;
+		setLevel(level);
 		setStatus(status);
 	}
 

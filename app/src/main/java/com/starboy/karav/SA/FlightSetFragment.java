@@ -2,6 +2,7 @@ package com.starboy.karav.SA;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
+import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -65,6 +66,17 @@ public class FlightSetFragment extends Fragment {
 
 	private Animation anim;
 
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		try {
+			//add Listener
+			ReceiverFragmentListener rListener = (ReceiverFragmentListener) activity;
+		} catch (ClassCastException e) {
+			throw new ClassCastException(activity.toString() + " must implement OnArticleSelectedListener");
+		}
+
+	}
 
 	// this method is only called once for this fragment
 	@Override
@@ -124,7 +136,8 @@ public class FlightSetFragment extends Fragment {
 		Fragment monitor = new ReceiverFragment();
 		monitor.setArguments(bundle);
 		Log.d(TAG, "start other");
-		((ReceiverActivity) getActivity()).replaceFragment(monitor);
+		((ReceiverActivity) getActivity()).sendMessage("T:B:" + level);
+		((ReceiverActivity) getActivity()).replaceFragment(monitor, 2);
 //        ((ReceiverActivity)getActivity()).sentdata("1."+level);
 	}
 
