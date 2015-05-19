@@ -11,6 +11,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import java.util.logging.Handler;
+
 public class SensorsManager extends ActionBarActivity implements SensorEventListener {
 
 	private SensorManager senSensorManager;
@@ -30,9 +32,7 @@ public class SensorsManager extends ActionBarActivity implements SensorEventList
 		senSensorManager.registerListener(this, senAccelerometer, SensorManager.SENSOR_DELAY_FASTEST);
 
 	}
-	public void setlevel(){
 
-	}
 	@Override
 	public void onSensorChanged(SensorEvent sensorEvent) {
 		Sensor mySensor = sensorEvent.sensor;
@@ -68,15 +68,22 @@ public class SensorsManager extends ActionBarActivity implements SensorEventList
 
 	}
 
-	@Override
-	protected void onPause() {
-		super.onPause();
+	public void pause(){
+		onPause();
 		senSensorManager.unregisterListener(this);
 	}
-
 	@Override
-	protected void onResume() {
-		super.onResume();
+	protected void onPause() {
+		pause();
+	}
+
+	public void resume(){
+		onResume();
 		senSensorManager.registerListener(this, senAccelerometer,  SensorManager.SENSOR_DELAY_FASTEST);
 	}
+	@Override
+	protected void onResume() {
+		resume();
+	}
+
 }
