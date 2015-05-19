@@ -11,8 +11,7 @@ import android.provider.BaseColumns;
  * - #balance number balance pass
  * - total number of sampling
  */
-public class TestResult implements BaseColumns {
-
+public class TestResult {
     public static final String id = "ID";
     public static final String level = "LEVEL";
     public static final String duration = "DURATION";
