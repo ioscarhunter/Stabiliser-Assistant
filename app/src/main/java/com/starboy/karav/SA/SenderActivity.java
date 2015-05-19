@@ -5,13 +5,17 @@ import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
 
-public class SenderActivity extends BluetoothActivity {
+public class SenderActivity extends BluetoothActivity implements SensorEventListener {
 
 
 	private TextView display;
@@ -43,17 +47,8 @@ public class SenderActivity extends BluetoothActivity {
 		}
 		setContentView(R.layout.activity_sender);
 
-		mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-		// If BT is not on, request that it be enabled.
-		// setupChat() will then be called during onActivityResult
-		if (!mBluetoothAdapter.isEnabled()) {
-			Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-			startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
-			// Otherwise, setup the chat session
-		} else if (mChatService == null) {
-			// Initialize the BluetoothChatService to perform bluetooth connections
-			mChatService = new BluetoothChatService(getActivity(), mHandler);
-		}
+		setupBluetooth();
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
 		discover = (Button) findViewById(R.id.discover_rec);
 		discover.setOnClickListener(new View.OnClickListener() {
@@ -131,6 +126,20 @@ public class SenderActivity extends BluetoothActivity {
 
 	}
 
+	private void setupBluetooth() {
+		mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+		// If BT is not on, request that it be enabled.
+		// setupChat() will then be called during onActivityResult
+		if (!mBluetoothAdapter.isEnabled()) {
+			Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+			startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
+			// Otherwise, setup the chat session
+		} else if (mChatService == null) {
+			// Initialize the BluetoothChatService to perform bluetooth connections
+			mChatService = new BluetoothChatService(getActivity(), mHandler);
+		}
+	}
+
 	private void displayMessagerecieve(String message) {
 		display.setText(message);
 	}
@@ -173,5 +182,15 @@ public class SenderActivity extends BluetoothActivity {
 				}
 				break;
 		}
+	}
+
+	@Override
+	public void onSensorChanged(SensorEvent event) {
+
+	}
+
+	@Override
+	public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
 	}
 }

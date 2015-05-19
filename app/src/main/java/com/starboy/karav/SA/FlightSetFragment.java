@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.LinearLayout;
@@ -56,15 +55,11 @@ public class FlightSetFragment extends Fragment {
 	private Button minu;
 	private long time;
 
-	private int grade;
-
 	private int level;
 
 	private boolean timeOn;
 
 	private int currentColour;
-
-	private Animation anim;
 
 	@Override
 	public void onAttach(Activity activity) {
@@ -78,31 +73,6 @@ public class FlightSetFragment extends Fragment {
 
 	}
 
-	// this method is only called once for this fragment
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		// retain this fragment
-		setRetainInstance(true);
-	}
-
-	@Override
-	public void onStart() {
-		super.onStart();
-//        // Get local Bluetooth adapter
-//        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-//        // If BT is not on, request that it be enabled.
-//        // setupChat() will then be called during onActivityResult
-//        if (!mBluetoothAdapter.isEnabled()) {
-//            Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-//            startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
-//            // Otherwise, setup the chat session
-//        } else if (mChatService == null) {
-//            // Initialize the BluetoothChatService to perform bluetooth connections
-//            mChatService = new BluetoothChatService(getActivity(), mHandler);
-//        }
-	}
-
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		view = inflater.inflate(R.layout.fragment_flight_setting, container, false);
@@ -113,13 +83,6 @@ public class FlightSetFragment extends Fragment {
 		timeOn = false;
 		currentColour = R.color.c_l1;
 		levelSelector = (LinearLayout) view.findViewById(R.id.levelselector);
-
-//        //blink animation
-//        anim = new AlphaAnimation(0.0f, 1.0f);
-//        anim.setDuration(100); //You can manage the time of the blink with this parameter
-//        anim.setStartOffset(250);
-//        anim.setRepeatMode(Animation.REVERSE);
-//        anim.setRepeatCount(Animation.INFINITE);
 		time = 3 * 1000 * 60;
 		countdown.setBase(SystemClock.elapsedRealtime() - time);
 
@@ -291,97 +254,4 @@ public class FlightSetFragment extends Fragment {
 		colorAnimation.start();
 	}
 
-//    @Override
-//    public void onDestroy() {
-//        super.onDestroy();
-//        if (mChatService != null) {
-//            mChatService.stop();
-//        }
-//    }
-//
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//
-//        // Performing this check in onResume() covers the case in which BT was
-//        // not enabled during onStart(), so we were paused to enable it...
-//        // onResume() will be called when ACTION_REQUEST_ENABLE activity returns.
-//        if (mChatService != null) {
-//            // Only if the state is STATE_NONE, do we know that we haven't started already
-//            if (mChatService.getState() == BluetoothChatService.STATE_NONE) {
-//                // Start the Bluetooth chat services
-//                mChatService.start();
-//            }
-//        }
-//    }
-//
-//    /**
-//     * Makes this device discoverable.
-//     */
-//    private void ensureDiscoverable() {
-//        if (mBluetoothAdapter.getScanMode() !=
-//                BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE) {
-//            Intent discoverableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
-//            discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
-//            startActivity(discoverableIntent);
-//        }
-//    }
-//
-//    private void messageReceive(String message) {
-//        display.setText(message);
-//    }
-//
-//    /**
-//     * The Handler that gets information back from the BluetoothChatService
-//     */
-//    private final Handler mHandler = new Handler() {
-//        @Override
-//        public void handleMessage(Message msg) {
-//            FragmentActivity activity = getActivity();
-//            switch (msg.what) {
-//                case Constants.MESSAGE_STATE_CHANGE:
-//                    switch (msg.arg1) {
-//                        case BluetoothChatService.STATE_CONNECTED:
-////                            (getActivity()).setTitle(getString(R.string.title_connected_to, mConnectedDeviceName));
-////                            mConversationArrayAdapter.clear();
-//                            break;
-//                        case BluetoothChatService.STATE_CONNECTING:
-////                            setStatus(R.string.title_connecting);
-//                            break;
-//                        case BluetoothChatService.STATE_LISTEN:
-//                            break;
-//                        case BluetoothChatService.STATE_NONE:
-////                            setStatus(R.string.title_not_connected);
-//                            break;
-//                    }
-//                    break;
-////                case Constants.MESSAGE_WRITE:
-////                    byte[] writeBuf = (byte[]) msg.obj;
-////                    // construct a string from the buffer
-////                    String writeMessage = new String(writeBuf);
-////                    mConversationArrayAdapter.add("Me:  " + writeMessage);
-////                    break;
-//                case Constants.MESSAGE_READ:    //get the message
-//                    byte[] readBuf = (byte[]) msg.obj;
-//                    // construct a string from the valid bytes in the buffer
-//                    messageReceive(new String(readBuf, 0, msg.arg1));
-////                    mConversationArrayAdapter.add(mConnectedDeviceName + ":  " + readMessage);
-//                    break;
-//                case Constants.MESSAGE_DEVICE_NAME:
-//                    // save the connected device's name
-//                    mConnectedDeviceName = msg.getData().getString(Constants.DEVICE_NAME);
-//                    if (null != activity) {
-//                        Toast.makeText(activity, "Connected to "
-//                                + mConnectedDeviceName, Toast.LENGTH_SHORT).show();
-//                    }
-//                    break;
-//                case Constants.MESSAGE_TOAST:
-//                    if (null != activity) {
-//                        Toast.makeText(activity, msg.getData().getString(Constants.TOAST),
-//                                Toast.LENGTH_SHORT).show();
-//                    }
-//                    break;
-//            }
-//        }
-//    };
 }

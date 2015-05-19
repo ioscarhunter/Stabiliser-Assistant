@@ -37,7 +37,6 @@ public class ReceiverFragment extends Fragment {
 
 	private Chronometer countdown;
 	private Chronometer timer;
-	//	private LinearLayout levelSelector;
 	private TextView minusSign;
 	private RatingBar rating;
 	private RelativeLayout status_layout;
@@ -61,39 +60,11 @@ public class ReceiverFragment extends Fragment {
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
 		try {
-			rListener = (ReceiverFragmentListener) activity;
+			rListener = (ReceiverFragmentListener) activity; //add listener for activity
 		} catch (ClassCastException e) {
 			throw new ClassCastException(activity.toString() + " must implement OnArticleSelectedListener");
 		}
 
-	}
-
-	//
-//	@Override
-//	public void onA
-	// this method is only called once for this fragment
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		// retain this fragment
-		setRetainInstance(true);
-	}
-
-	@Override
-	public void onStart() {
-		super.onStart();
-//        // Get local Bluetooth adapter
-//        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-//        // If BT is not on, request that it be enabled.
-//        // setupChat() will then be called during onActivityResult
-//        if (!mBluetoothAdapter.isEnabled()) {
-//            Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-//            startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
-//            // Otherwise, setup the chat session
-//        } else if (mChatService == null) {
-//            // Initialize the BluetoothChatService to perform bluetooth connections
-//            mChatService = new BluetoothChatService(getActivity(), mHandler);
-//        }
 	}
 
 	@Override
@@ -175,12 +146,7 @@ public class ReceiverFragment extends Fragment {
 		status_tv = (TextView) view.findViewById(R.id.status);
 		status_level = (RelativeLayout) view.findViewById(R.id.ratingContainer);
 		minusSign = (TextView) view.findViewById(R.id.minusSign);
-
-		level = 5;
-
-		timeOn = false;
 		currentColour = R.color.c_l5;
-//		levelSelector = (LinearLayout) view.findViewById(R.id.levelselector);
 
 		start = (Button) view.findViewById(R.id.start_but);
 		start.setOnClickListener(new OnClickListener() {
@@ -190,7 +156,6 @@ public class ReceiverFragment extends Fragment {
 				startTime();
 			}
 		});
-
 		stop = (Button) view.findViewById(R.id.stop_but);
 		stop.setOnClickListener(new OnClickListener() {
 			@Override
@@ -202,13 +167,18 @@ public class ReceiverFragment extends Fragment {
 		status_layout = (RelativeLayout) view.findViewById(R.id.status_layout);
 
 		start.setBackgroundColor(getResources().getColor(R.color.black));
-
 		rating = (RatingBar) view.findViewById(R.id.level_rating);
+		timeOn = false;
+		level = 5;
+		setupTimer();
+		setLevel(level);
+		setStatus(0);
+		startTime();
+	}
 
+	private void setupTimer() {
 		Bundle bundle = this.getArguments();
 		final long setedTime = bundle.getLong("time");
-//            Log.d(TAG,"time = "+i);
-//		int level = bundle.getInt("level");
 
 		countdown = (Chronometer) view.findViewById(R.id.countdown);
 		countdown.setBase(SystemClock.elapsedRealtime() - setedTime);
@@ -233,9 +203,6 @@ public class ReceiverFragment extends Fragment {
 
 		});
 		timer.setBase(SystemClock.elapsedRealtime());
-		setLevel(level);
-		setStatus(0);
-		startTime();
 	}
 
 	private void setupAnimate() {
@@ -320,98 +287,4 @@ public class ReceiverFragment extends Fragment {
 		setStatus(status);
 	}
 
-
-//    @Override
-//    public void onDestroy() {
-//        super.onDestroy();
-//        if (mChatService != null) {
-//            mChatService.stop();
-//        }
-//    }
-//
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//
-//        // Performing this check in onResume() covers the case in which BT was
-//        // not enabled during onStart(), so we were paused to enable it...
-//        // onResume() will be called when ACTION_REQUEST_ENABLE activity returns.
-//        if (mChatService != null) {
-//            // Only if the state is STATE_NONE, do we know that we haven't started already
-//            if (mChatService.getState() == BluetoothChatService.STATE_NONE) {
-//                // Start the Bluetooth chat services
-//                mChatService.start();
-//            }
-//        }
-//    }
-//
-//    /**
-//     * Makes this device discoverable.
-//     */
-//    private void ensureDiscoverable() {
-//        if (mBluetoothAdapter.getScanMode() !=
-//                BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE) {
-//            Intent discoverableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
-//            discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
-//            startActivity(discoverableIntent);
-//        }
-//    }
-//
-//    private void messageReceive(String message) {
-//        display.setText(message);
-//    }
-//
-//    /**
-//     * The Handler that gets information back from the BluetoothChatService
-//     */
-//    private final Handler mHandler = new Handler() {
-//        @Override
-//        public void handleMessage(Message msg) {
-//            FragmentActivity activity = getActivity();
-//            switch (msg.what) {
-//                case Constants.MESSAGE_STATE_CHANGE:
-//                    switch (msg.arg1) {
-//                        case BluetoothChatService.STATE_CONNECTED:
-////                            (getActivity()).setTitle(getString(R.string.title_connected_to, mConnectedDeviceName));
-////                            mConversationArrayAdapter.clear();
-//                            break;
-//                        case BluetoothChatService.STATE_CONNECTING:
-////                            setStatus(R.string.title_connecting);
-//                            break;
-//                        case BluetoothChatService.STATE_LISTEN:
-//                            break;
-//                        case BluetoothChatService.STATE_NONE:
-////                            setStatus(R.string.title_not_connected);
-//                            break;
-//                    }
-//                    break;
-////                case Constants.MESSAGE_WRITE:
-////                    byte[] writeBuf = (byte[]) msg.obj;
-////                    // construct a string from the buffer
-////                    String writeMessage = new String(writeBuf);
-////                    mConversationArrayAdapter.add("Me:  " + writeMessage);
-////                    break;
-//                case Constants.MESSAGE_READ:    //get the message
-//                    byte[] readBuf = (byte[]) msg.obj;
-//                    // construct a string from the valid bytes in the buffer
-//                    messageReceive(new String(readBuf, 0, msg.arg1));
-////                    mConversationArrayAdapter.add(mConnectedDeviceName + ":  " + readMessage);
-//                    break;
-//                case Constants.MESSAGE_DEVICE_NAME:
-//                    // save the connected device's name
-//                    mConnectedDeviceName = msg.getData().getString(Constants.DEVICE_NAME);
-//                    if (null != activity) {
-//                        Toast.makeText(activity, "Connected to "
-//                                + mConnectedDeviceName, Toast.LENGTH_SHORT).show();
-//                    }
-//                    break;
-//                case Constants.MESSAGE_TOAST:
-//                    if (null != activity) {
-//                        Toast.makeText(activity, msg.getData().getString(Constants.TOAST),
-//                                Toast.LENGTH_SHORT).show();
-//                    }
-//                    break;
-//            }
-//        }
-//    };
 }

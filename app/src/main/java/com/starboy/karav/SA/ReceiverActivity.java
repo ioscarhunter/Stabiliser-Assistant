@@ -123,10 +123,6 @@ public class ReceiverActivity extends BluetoothActivity implements ReceiverFragm
 	}
 
 
-	public void sentdata(String data) {
-		sendMessage(data);
-	}
-
 	@Override
 	public void onDataReceive(int status, int level) {
 		// Capture the article fragment from the activity layout

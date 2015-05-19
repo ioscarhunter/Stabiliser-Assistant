@@ -53,10 +53,7 @@ public class BluetoothDiscoveryFragment extends Fragment {
 	private static final int REQUEST_CONNECT_DEVICE_INSECURE = 2;
 	private static final int REQUEST_ENABLE_BT = 3;
 
-	// Layout Views
-//    private ListView mConversationView;
-//    private EditText mOutEditText;
-//    private Button mSendButton;
+
 	/**
 	 * Return Intent extra
 	 */
@@ -93,20 +90,7 @@ public class BluetoothDiscoveryFragment extends Fragment {
 		@Override
 		public void onClick(final View v) {
 			switch (v.getId()) {
-//                case R.id.secure_connect_scan: {
-//                    // Launch the DeviceListActivity to see devices and do scan
-//                    Intent serverIntent = new Intent(getActivity(), DeviceListActivity.class);
-//                    Log.d("BluetoothDiscoveryFragment", "secure press");
-//                    startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_SECURE);
-//                    break;
-//                }
-//                case R.id.insecure_connect_scan: {
-//                    // Launch the DeviceListActivity to see devices and do scan
-//                    Intent serverIntent = new Intent(getActivity(), DeviceListActivity.class);
-//                    Log.d("BluetoothDiscoveryFragment", "insecure press");
-//                    startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_INSECURE);
-//                    break;
-//                }
+
 				case R.id.discoverable: {
 					// Ensure this device is discoverable by others
 					ensureDiscoverable();
@@ -135,17 +119,12 @@ public class BluetoothDiscoveryFragment extends Fragment {
 //                 Create the result Intent and include the MAC address
 				Bundle MacData = new Bundle();
 				MacData.putString(EXTRA_DEVICE_ADDRESS, address);
-//
-//                //open new activity
-//				startAfterFragment(MacData);
+
 //				 Create the result Intent and include the MAC address
 				Intent intent = new Intent();
 				intent.putExtra(EXTRA_DEVICE_ADDRESS, address);
 				((BluetoothDeviceListActivity) getActivity()).sentBackData(intent);
-//
-//            // Set result and finish this Activity
-//            setResult(Activity.RESULT_OK, intent);
-//            finish();
+
 			}
 		}
 	};
@@ -275,13 +254,6 @@ public class BluetoothDiscoveryFragment extends Fragment {
 		}
 	}
 
-	private void startAfterFragment(Bundle Macdata) {
-
-		Log.d(TAG, "Start new activity");
-		After_connectFragment AF = new After_connectFragment();
-		AF.setArguments(Macdata);
-		((BluetoothDeviceListActivity) getActivity()).replaceFragment(AF);
-	}
 
 	/**
 	 * Makes this device discoverable.
