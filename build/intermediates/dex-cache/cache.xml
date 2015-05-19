@@ -2,24 +2,52 @@
 <items version="2" >
 
     <item
-        jar="D:\Drive\AStudio\MyApplication\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.0.0\jars\classes.jar"
+        jar="D:\Drive\AStudio\MyApplication\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\jars\classes.jar"
         jumboMode="false"
-        revision="22.0.1" sha1="d84409890828e07d344a3b9b1da545dba9897b51">
+        revision="22.0.1"
+        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
         <dex
-            dex="D:\Drive\AStudio\MyApplication\app\build\intermediates\pre-dexed\debug\classes-8c543e93f21b093a0f7d426c305fd27f348cab0c.jar" />
+            dex="D:\Drive\AStudio\MyApplication\app\build\intermediates\pre-dexed\debug\classes-3c4b43aaac526f59f3672dd4cefaf9b1b6fa8bd1.jar"/>
+    </item>
+    <item
+        jar="D:\Drive\AStudio\MyApplication\balancedetector\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.1\jars\libs\internal_impl-22.1.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="9e070ad32b2700b0343e8e0cccc437733d91ba3a">
+        <dex
+            dex="D:\Drive\AStudio\MyApplication\balancedetector\build\intermediates\pre-dexed\debug\internal_impl-22.1.1-280950306f8822982ec3b2989aa71218cba23934.jar"/>
+    </item>
+    <item
+        jar="D:\Drive\AStudio\MyApplication\balancedetector\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a3ff3c506644c820eb2bdf06e8339f72be578551">
+        <dex
+            dex="D:\Drive\AStudio\MyApplication\balancedetector\build\intermediates\pre-dexed\debug\classes-63fc6d9ff5d5e1caed63a3d21b05c90ee11df4e7.jar"/>
     </item>
     <item
         jar="D:\Drive\AStudio\MyApplication\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\jars\libs\internal_impl-22.0.0.jar"
-        jumboMode="false" revision="22.0.1"
+        jumboMode="false"
+        revision="22.0.1"
         sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
         <dex
-            dex="D:\Drive\AStudio\MyApplication\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-0cdddffc87c931e89ecc89b085c1751e290860a0.jar" />
+            dex="D:\Drive\AStudio\MyApplication\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-0cdddffc87c931e89ecc89b085c1751e290860a0.jar"/>
     </item>
     <item
-        jar="D:\Drive\AStudio\MyApplication\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\jars\classes.jar"
-        jumboMode="false" revision="22.0.1" sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
+        jar="D:\Drive\AStudio\MyApplication\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
         <dex
-            dex="D:\Drive\AStudio\MyApplication\app\build\intermediates\pre-dexed\debug\classes-3c4b43aaac526f59f3672dd4cefaf9b1b6fa8bd1.jar" />
+            dex="D:\Drive\AStudio\MyApplication\app\build\intermediates\pre-dexed\debug\classes-8c543e93f21b093a0f7d426c305fd27f348cab0c.jar"/>
+    </item>
+    <item
+        jar="D:\Drive\AStudio\MyApplication\balancedetector\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
+        <dex
+            dex="D:\Drive\AStudio\MyApplication\balancedetector\build\intermediates\pre-dexed\debug\classes-e4e0a0214870aafb0b7b3dbb12af98c3b0b4bb2b.jar"/>
     </item>
     <item
         jar="C:\Users\Karav\AppData\Local\Android\android-sdk\extras\android\m2repository\com\android\support\support-annotations\22.0.0\support-annotations-22.0.0.jar"
@@ -27,7 +55,15 @@
         revision="22.0.1"
         sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
         <dex
-            dex="D:\Drive\AStudio\MyApplication\app\build\intermediates\pre-dexed\debug\support-annotations-22.0.0-276e27844335a8faff15bd983b1a9939cc3f606a.jar" />
+            dex="D:\Drive\AStudio\MyApplication\app\build\intermediates\pre-dexed\debug\support-annotations-22.0.0-276e27844335a8faff15bd983b1a9939cc3f606a.jar"/>
+    </item>
+    <item
+        jar="C:\Users\Karav\AppData\Local\Android\android-sdk\extras\android\m2repository\com\android\support\support-annotations\22.1.1\support-annotations-22.1.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="01d051a6bfb1218b1db2d3a5af0480ac2c25c42a">
+        <dex
+            dex="D:\Drive\AStudio\MyApplication\balancedetector\build\intermediates\pre-dexed\debug\support-annotations-22.1.1-225dc9e87895edf23b883bf9bc983a9185c6b501.jar"/>
     </item>
 
 </items>
