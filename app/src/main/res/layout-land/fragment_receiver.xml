@@ -1,11 +1,13 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    android:id="@+id/fragment_receiver"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:touchscreenBlocksFocus="false">
 
     <RelativeLayout
-        android:id="@+id/relativeLayout"
+        android:id="@+id/status_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/ratingContainer"
@@ -19,7 +21,6 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
-            android:background="#ffff1700"
             android:elevation="0dp"
             android:fontFamily="san"
             android:gravity="center"

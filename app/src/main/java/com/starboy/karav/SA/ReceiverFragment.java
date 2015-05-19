@@ -2,6 +2,7 @@ package com.starboy.karav.SA;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
+import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -14,7 +15,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.Chronometer;
-import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -24,36 +25,22 @@ import android.widget.TextView;
  */
 public class ReceiverFragment extends Fragment {
 
-//    private static final int REQUEST_ENABLE_BT = 3;
-//    /**
-//     * Name of the connected device
-//     */
-//    private String mConnectedDeviceName = null;
-//
-//    /**
-//     * Member object for the chat services
-//     */
-//    private BluetoothChatService mChatService = null;
-//
-//    /**
-//     * Local Bluetooth adapter
-//     */
-//    private BluetoothAdapter mBluetoothAdapter = null;
-
 	private String TAG = "ReceiverFragment";
 
 	private View view;
 	private TextView display;
 	private Button discover;
-	private TextView status;
+	private TextView status_tv;
 	private RelativeLayout status_level;
 	private Button start;
 	private Button stop;
 
 	private Chronometer countdown;
 	private Chronometer timer;
-	private LinearLayout levelSelector;
+	//	private LinearLayout levelSelector;
 	private TextView minusSign;
+	private RatingBar rating;
+	private RelativeLayout status_layout;
 
 	private int grade;
 
@@ -62,12 +49,28 @@ public class ReceiverFragment extends Fragment {
 	private boolean timeOn;
 
 	private int currentColour;
+	private int balance;
 
 	private Animation anim;
+	private RecieverFragmentListener rListener;
 
 	public ReceiverFragment() {
 	}
 
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		try {
+			rListener = (RecieverFragmentListener) activity;
+		} catch (ClassCastException e) {
+			throw new ClassCastException(activity.toString() + " must implement OnArticleSelectedListener");
+		}
+
+	}
+
+	//
+//	@Override
+//	public void onA
 	// this method is only called once for this fragment
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -96,56 +99,18 @@ public class ReceiverFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		view = inflater.inflate(R.layout.fragment_receiver, container, false);
-//        display = (TextView) view.findViewById(R.id.waitForConnect);
-		status = (TextView) view.findViewById(R.id.status);
-		status_level = (RelativeLayout) view.findViewById(R.id.ratingContainer);
-		minusSign = (TextView) view.findViewById(R.id.minusSign);
-
-		level = 1;
-		timeOn = false;
-		currentColour = R.color.c_l1;
-		levelSelector = (LinearLayout) view.findViewById(R.id.levelselector);
-
-		//blink animation
-		anim = new AlphaAnimation(0.0f, 1.0f);
-		anim.setDuration(100); //You can manage the time of the blink with this parameter
-		anim.setStartOffset(250);
-		anim.setRepeatMode(Animation.REVERSE);
-		anim.setRepeatCount(Animation.INFINITE);
-		Bundle bundle = this.getArguments();
-
-		final long setedTime = bundle.getLong("time");
-//            Log.d(TAG,"time = "+i);
-		int level = bundle.getInt("level");
-
-		countdown = (Chronometer) view.findViewById(R.id.countdown);
-		countdown.setBase(SystemClock.elapsedRealtime() - setedTime);
-		setButton();
-
-		timer = (Chronometer) view.findViewById(R.id.timer);
-		timer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
-			@Override
-			public void onChronometerTick(Chronometer chronometer) {
-
-				long myElapsedMillis = SystemClock.elapsedRealtime() - timer.getBase();
-				countdown.setBase(SystemClock.elapsedRealtime() - (setedTime - myElapsedMillis));
-				if (myElapsedMillis >= setedTime) {
-					if (minusSign.getVisibility() == View.INVISIBLE) {
-						minusSign.setVisibility(View.VISIBLE);
-						countdown.setTextColor(getResources().getColor(R.color.deep_orange500));
-						countdown.startAnimation(anim);
-						minusSign.startAnimation(anim);
-					}
-					//TODO alarm
-				}
-				countdown.setBase(SystemClock.elapsedRealtime() - Math.abs(myElapsedMillis - setedTime));
-			}
-
-		});
-		timer.setBase(SystemClock.elapsedRealtime());
-		startTime();
-
+		setupUI();
 		return view;
+	}
+
+	private void setStatus(int status) {
+		if (status == 1) {
+			status_tv.setText(getResources().getString(R.string.status_unbalance));
+			status_layout.setBackgroundColor(getResources().getColor(R.color.c_unbalance));
+		} else {
+			status_tv.setText(getResources().getString(R.string.status_balance));
+			status_layout.setBackgroundColor(getResources().getColor(R.color.c_balance));
+		}
 	}
 
 	private void startTime() {
@@ -199,14 +164,15 @@ public class ReceiverFragment extends Fragment {
 		((ReceiverActivity) getActivity()).startNewActivity(SummaryActivity.class, extra);
 	}
 
-	private void setButton() {
-//        discover = (Button) view.findViewById(R.id.discover_rec);
-//        discover.setOnClickListener(new OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                ensureDiscoverable();
-//            }
-//        });
+	private void setupUI() {
+		status_tv = (TextView) view.findViewById(R.id.status);
+		status_level = (RelativeLayout) view.findViewById(R.id.ratingContainer);
+		minusSign = (TextView) view.findViewById(R.id.minusSign);
+
+		level = 5;
+		timeOn = false;
+		currentColour = R.color.c_l5;
+//		levelSelector = (LinearLayout) view.findViewById(R.id.levelselector);
 
 		start = (Button) view.findViewById(R.id.start_but);
 		start.setOnClickListener(new OnClickListener() {
@@ -216,6 +182,7 @@ public class ReceiverFragment extends Fragment {
 				startTime();
 			}
 		});
+
 		stop = (Button) view.findViewById(R.id.stop_but);
 		stop.setOnClickListener(new OnClickListener() {
 			@Override
@@ -224,16 +191,59 @@ public class ReceiverFragment extends Fragment {
 			}
 		});
 
+		status_layout = (RelativeLayout) view.findViewById(R.id.status_layout);
+
 		start.setBackgroundColor(getResources().getColor(R.color.black));
+
+		rating = (RatingBar) view.findViewById(R.id.level_rating);
+
+		Bundle bundle = this.getArguments();
+		final long setedTime = bundle.getLong("time");
+//            Log.d(TAG,"time = "+i);
+		int level = bundle.getInt("level");
+
+		countdown = (Chronometer) view.findViewById(R.id.countdown);
+		countdown.setBase(SystemClock.elapsedRealtime() - setedTime);
+
+		timer = (Chronometer) view.findViewById(R.id.timer);
+		timer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+			@Override
+			public void onChronometerTick(Chronometer chronometer) {
+				long myElapsedMillis = SystemClock.elapsedRealtime() - timer.getBase();
+				countdown.setBase(SystemClock.elapsedRealtime() - (setedTime - myElapsedMillis));
+				if (myElapsedMillis >= setedTime) {
+					if (minusSign.getVisibility() == View.INVISIBLE) {
+						minusSign.setVisibility(View.VISIBLE);
+						countdown.setTextColor(getResources().getColor(R.color.deep_orange500));
+						countdown.startAnimation(anim);
+						minusSign.startAnimation(anim);
+					}
+					//TODO alarm
+				}
+				countdown.setBase(SystemClock.elapsedRealtime() - Math.abs(myElapsedMillis - setedTime));
+			}
+
+		});
+		timer.setBase(SystemClock.elapsedRealtime());
+		startTime();
 	}
 
+	private void setupAnimat() {
+		//blink animation
+		anim = new AlphaAnimation(0.0f, 1.0f);
+		anim.setDuration(100); //You can manage the time of the blink with this parameter
+		anim.setStartOffset(250);
+		anim.setRepeatMode(Animation.REVERSE);
+		anim.setRepeatCount(Animation.INFINITE);
+	}
 
 	private void setLevel(int level) {
-
+		rating.setProgress(level);
 		switch (level) {
 			case 1:
 				setColourAnimation(status_level, currentColour, R.color.c_l1, 300);
 				currentColour = R.color.c_l1;
+
 //                status_level.setBackgroundColor(getResources().getColor(R.color.c_l1));
 //                setColourAnimation(level1, R.color.clear, R.color.c_l1d, 250);
 				break;
@@ -294,6 +304,13 @@ public class ReceiverFragment extends Fragment {
 		colorAnimation.start();
 	}
 
+	public void updateData(int status, int grade) {
+		this.grade = grade;
+		this.balance = status;
+		setLevel(grade);
+		setStatus(status);
+	}
+
 
 //    @Override
 //    public void onDestroy() {
@@ -331,7 +348,7 @@ public class ReceiverFragment extends Fragment {
 //        }
 //    }
 //
-//    private void displayMessage(String message) {
+//    private void messageReceive(String message) {
 //        display.setText(message);
 //    }
 //
@@ -368,7 +385,7 @@ public class ReceiverFragment extends Fragment {
 //                case Constants.MESSAGE_READ:    //get the message
 //                    byte[] readBuf = (byte[]) msg.obj;
 //                    // construct a string from the valid bytes in the buffer
-//                    displayMessage(new String(readBuf, 0, msg.arg1));
+//                    messageReceive(new String(readBuf, 0, msg.arg1));
 ////                    mConversationArrayAdapter.add(mConnectedDeviceName + ":  " + readMessage);
 //                    break;
 //                case Constants.MESSAGE_DEVICE_NAME:

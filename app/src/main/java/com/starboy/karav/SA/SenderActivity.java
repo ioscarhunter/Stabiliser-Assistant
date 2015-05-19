@@ -29,6 +29,9 @@ public class SenderActivity extends BluetoothActivity {
 	private Button l2;
 	private Button l4;
 	private TextView status;
+	private int statusb = 0;
+	private int rating = 0;
+	private String update = "U";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +69,8 @@ public class SenderActivity extends BluetoothActivity {
 		sb.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				writeMessage("Balance");
+				statusb = 0;
+				updateData();
 			}
 		});
 
@@ -74,7 +78,8 @@ public class SenderActivity extends BluetoothActivity {
 		su.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				writeMessage("UnBalance");
+				statusb = 1;
+				updateData();
 			}
 		});
 
@@ -82,7 +87,8 @@ public class SenderActivity extends BluetoothActivity {
 		l1.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				writeMessage("Level1");
+				rating = 1;
+				updateData();
 			}
 		});
 
@@ -90,7 +96,8 @@ public class SenderActivity extends BluetoothActivity {
 		l2.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				writeMessage("Level2");
+				rating = 2;
+				updateData();
 			}
 		});
 
@@ -98,7 +105,8 @@ public class SenderActivity extends BluetoothActivity {
 		l3.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				writeMessage("Level3");
+				rating = 3;
+				updateData();
 			}
 		});
 
@@ -106,7 +114,8 @@ public class SenderActivity extends BluetoothActivity {
 		l4.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				writeMessage("Level4");
+				rating = 4;
+				updateData();
 			}
 		});
 
@@ -114,10 +123,12 @@ public class SenderActivity extends BluetoothActivity {
 		l5.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				writeMessage("Level5");
+				rating = 5;
+				updateData();
 			}
 		});
-
+		rating = 1;
+		statusb = 1;
 
 	}
 
@@ -126,8 +137,8 @@ public class SenderActivity extends BluetoothActivity {
 		display.setText(message);
 	}
 
-	private void writeMessage(String msg) {
-		sendMessage(msg);
+	private void updateData() {
+		sendMessage(update + ":" + statusb + ":" + rating);
 	}
 
 	private void processMassage(String msg) {

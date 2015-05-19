@@ -17,6 +17,7 @@ public class BluetoothActivity extends ColourBarActivity {
 	protected static final int REQUEST_ENABLE_BT = 3;
 	protected static final int REQUEST_GET_DEVICE = 2;
 	public static String EXTRA_DEVICE_ADDRESS = "device_address";
+
 	/**
 	 * Name of the connected device
 	 */
@@ -59,7 +60,7 @@ public class BluetoothActivity extends ColourBarActivity {
 				case Constants.MESSAGE_READ:    //get the message
 					byte[] readBuf = (byte[]) msg.obj;
 					// construct a string from the valid bytes in the buffer
-					displayMessage(new String(readBuf, 0, msg.arg1));
+					messageReceive(new String(readBuf, 0, msg.arg1));
 //                    mConversationArrayAdapter.add(mConnectedDeviceName + ":  " + readMessage);
 					break;
 				case Constants.MESSAGE_DEVICE_NAME:
@@ -93,7 +94,7 @@ public class BluetoothActivity extends ColourBarActivity {
 	 */
 	private StringBuffer mOutStringBuffer;
 
-	protected void displayMessage(String s) {
+	protected void messageReceive(String s) {
 		Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
 	}
 

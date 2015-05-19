@@ -314,7 +314,7 @@ public class FlightSetFragment extends Fragment {
 //        }
 //    }
 //
-//    private void displayMessage(String message) {
+//    private void messageReceive(String message) {
 //        display.setText(message);
 //    }
 //
@@ -351,7 +351,7 @@ public class FlightSetFragment extends Fragment {
 //                case Constants.MESSAGE_READ:    //get the message
 //                    byte[] readBuf = (byte[]) msg.obj;
 //                    // construct a string from the valid bytes in the buffer
-//                    displayMessage(new String(readBuf, 0, msg.arg1));
+//                    messageReceive(new String(readBuf, 0, msg.arg1));
 ////                    mConversationArrayAdapter.add(mConnectedDeviceName + ":  " + readMessage);
 //                    break;
 //                case Constants.MESSAGE_DEVICE_NAME:

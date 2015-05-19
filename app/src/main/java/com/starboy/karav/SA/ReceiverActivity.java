@@ -35,9 +35,7 @@ public class ReceiverActivity extends BluetoothActivity implements RecieverFragm
 		getFragmentManager().beginTransaction().add(R.id.r_fragment, new FlightSetFragment()).commit();
 	}
 
-
-
-//    private void displayMessage(String message) {
+//    private void messageReceive(String message) {
 //        display.setText(message);
 ////    }
 
@@ -125,6 +123,33 @@ public class ReceiverActivity extends BluetoothActivity implements RecieverFragm
 
 	@Override
 	public void onDataReceive(int status, int level) {
+		// Capture the article fragment from the activity layout
+		try {
+			ReceiverFragment ReceiverFrag = (ReceiverFragment) getFragmentManager().findFragmentById(R.id.r_fragment);
+//
+			if (ReceiverFrag != null) {
+				Log.d(TAG, "enter");
+				// If article frag is available, we're in two-pane layout...
 
+				// Call a method in the ArticleFragment to update its content
+				ReceiverFrag.updateData(status, level);
+			}
+			Log.d(TAG, "not enter");
+		} catch (ClassCastException e) {
+
+		}
+	}
+
+
+	@Override
+	protected void messageReceive(String s) {
+		String receive[] = s.split(":");
+		Log.d(TAG, s);
+		switch (receive[0]) {
+			case "U":
+				int status = Integer.parseInt(receive[1]);
+				int level = Integer.parseInt(receive[2]);
+				onDataReceive(status, level);
+		}
 	}
 }
