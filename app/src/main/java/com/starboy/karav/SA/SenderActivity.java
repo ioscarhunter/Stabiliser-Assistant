@@ -42,7 +42,7 @@ public class SenderActivity extends ColourBarActivity {
 	private final Handler mHandler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
-			Activity activity = (Activity) getApplicationContext();
+			Activity activity = getActivity();
 			switch (msg.what) {
 				case Constants.MESSAGE_STATE_CHANGE:
 					switch (msg.arg1) {
@@ -88,6 +88,8 @@ public class SenderActivity extends ColourBarActivity {
 	private Button l1;
 	private Button l3;
 	private Button l5;
+	private Button l2;
+	private Button l4;
 	private TextView status;
 
 	@Override
@@ -100,6 +102,18 @@ public class SenderActivity extends ColourBarActivity {
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
 		}
 		setContentView(R.layout.activity_sender);
+
+		mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+		// If BT is not on, request that it be enabled.
+		// setupChat() will then be called during onActivityResult
+		if (!mBluetoothAdapter.isEnabled()) {
+			Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+			startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
+			// Otherwise, setup the chat session
+		} else if (mChatService == null) {
+			// Initialize the BluetoothChatService to perform bluetooth connections
+			mChatService = new BluetoothChatService(getActivity(), mHandler);
+		}
 
 		discover = (Button) findViewById(R.id.discover_rec);
 		discover.setOnClickListener(new View.OnClickListener() {
@@ -118,7 +132,7 @@ public class SenderActivity extends ColourBarActivity {
 			}
 		});
 
-		su = (Button) findViewById(R.id.s_bl);
+		su = (Button) findViewById(R.id.s_ub);
 		su.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -126,7 +140,7 @@ public class SenderActivity extends ColourBarActivity {
 			}
 		});
 
-		l1 = (Button) findViewById(R.id.s_bl);
+		l1 = (Button) findViewById(R.id.s1);
 		l1.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -134,7 +148,15 @@ public class SenderActivity extends ColourBarActivity {
 			}
 		});
 
-		l3 = (Button) findViewById(R.id.s_bl);
+		l2 = (Button) findViewById(R.id.s2);
+		l2.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				writeMessage("Level2");
+			}
+		});
+
+		l3 = (Button) findViewById(R.id.s3);
 		l3.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -142,7 +164,15 @@ public class SenderActivity extends ColourBarActivity {
 			}
 		});
 
-		l5 = (Button) findViewById(R.id.s_bl);
+		l4 = (Button) findViewById(R.id.s4);
+		l4.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				writeMessage("Level4");
+			}
+		});
+
+		l5 = (Button) findViewById(R.id.s5);
 		l5.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -221,6 +251,11 @@ public class SenderActivity extends ColourBarActivity {
 
 	private void setStatus(String msg) {
 
+	}
+
+
+	private Activity getActivity() {
+		return SenderActivity.this;
 	}
 
 	/**

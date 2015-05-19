@@ -65,7 +65,7 @@ public class ReceiverActivity extends ColourBarActivity {
 				case Constants.MESSAGE_READ:    //get the message
 					byte[] readBuf = (byte[]) msg.obj;
 					// construct a string from the valid bytes in the buffer
-//                    displayMessage(new String(readBuf, 0, msg.arg1));
+					displayMessage(new String(readBuf, 0, msg.arg1));
 //                    mConversationArrayAdapter.add(mConnectedDeviceName + ":  " + readMessage);
 					break;
 				case Constants.MESSAGE_DEVICE_NAME:
@@ -94,6 +94,9 @@ public class ReceiverActivity extends ColourBarActivity {
 	 */
 	private BluetoothAdapter mBluetoothAdapter = null;
 
+	private void displayMessage(String s) {
+		Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+	}
 
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
@@ -164,7 +167,7 @@ public class ReceiverActivity extends ColourBarActivity {
 ////    }
 
 	private Activity getActivity() {
-		return this;
+		return ReceiverActivity.this;
 	}
 
 	/**

@@ -137,11 +137,11 @@ public class BluetoothDiscoveryFragment extends Fragment {
 				MacData.putString(EXTRA_DEVICE_ADDRESS, address);
 //
 //                //open new activity
-				startAfterFragment(MacData);
-				// Create the result Intent and include the MAC address
-//                Intent intent = new Intent();
-//                intent.putExtra(EXTRA_DEVICE_ADDRESS, address);
-//                ((BluetoothDeviceListActivity) getActivity()).sentBackData(intent);
+//				startAfterFragment(MacData);
+//				 Create the result Intent and include the MAC address
+				Intent intent = new Intent();
+				intent.putExtra(EXTRA_DEVICE_ADDRESS, address);
+				((BluetoothDeviceListActivity) getActivity()).sentBackData(intent);
 //
 //            // Set result and finish this Activity
 //            setResult(Activity.RESULT_OK, intent);

@@ -17,7 +17,7 @@ public class MainActivity extends ColourBarActivity {
 		Sender.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				startActivity(new Intent(MainActivity.this, BluetoothDeviceListActivity.class));
+				startActivity(new Intent(MainActivity.this, SenderActivity.class));
 			}
 		});
 

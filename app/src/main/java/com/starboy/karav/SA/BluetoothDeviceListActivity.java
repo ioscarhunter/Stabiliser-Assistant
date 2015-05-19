@@ -22,9 +22,9 @@ public class BluetoothDeviceListActivity extends ColourBarActivity {
 		} else {
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
 		}
-		setContentView(R.layout.activity_sender);
+		setContentView(R.layout.activity_device_popup);
 		Log.d(TAG, "Start Discovery");
-//		getFragmentManager().beginTransaction().replace(R.id.sender_fragment, new BluetoothDiscoveryFragment()).commit();
+		getFragmentManager().beginTransaction().replace(R.id.sender_fragment, new BluetoothDiscoveryFragment()).commit();
 	}
 
 	public void replaceFragment(Fragment fragment) {
