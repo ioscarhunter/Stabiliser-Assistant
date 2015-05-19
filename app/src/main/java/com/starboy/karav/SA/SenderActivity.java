@@ -8,6 +8,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +29,12 @@ public class SenderActivity extends ColourBarActivity {
 	 * Local Bluetooth adapter
 	 */
 	private BluetoothAdapter mBluetoothAdapter = null;
+
+	/**
+	 * String buffer for outgoing messages
+	 */
+	private StringBuffer mOutStringBuffer;
+
 	private TextView display;
 	/**
 	 * The Handler that gets information back from the BluetoothChatService
@@ -53,6 +60,7 @@ public class SenderActivity extends ColourBarActivity {
 							break;
 					}
 					break;
+
 				case Constants.MESSAGE_READ:    //get the message
 					byte[] readBuf = (byte[]) msg.obj;
 					// construct a string from the valid bytes in the buffer
@@ -75,6 +83,12 @@ public class SenderActivity extends ColourBarActivity {
 		}
 	};
 	private Button discover;
+	private Button sb;
+	private Button su;
+	private Button l1;
+	private Button l3;
+	private Button l5;
+	private TextView status;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +100,57 @@ public class SenderActivity extends ColourBarActivity {
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
 		}
 		setContentView(R.layout.activity_sender);
+
+		discover = (Button) findViewById(R.id.discover_rec);
+		discover.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				ensureDiscoverable();
+			}
+		});
+
+		display = (TextView) findViewById(R.id.connect_status);
+		sb = (Button) findViewById(R.id.s_bl);
+		sb.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				writeMessage("Balance");
+			}
+		});
+
+		su = (Button) findViewById(R.id.s_bl);
+		su.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				writeMessage("UnBalance");
+			}
+		});
+
+		l1 = (Button) findViewById(R.id.s_bl);
+		l1.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				writeMessage("Level1");
+			}
+		});
+
+		l3 = (Button) findViewById(R.id.s_bl);
+		l3.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				writeMessage("Level3");
+			}
+		});
+
+		l5 = (Button) findViewById(R.id.s_bl);
+		l5.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				writeMessage("Level5");
+			}
+		});
+
+
 	}
 
 	@Override
@@ -103,6 +168,8 @@ public class SenderActivity extends ColourBarActivity {
 			// Initialize the BluetoothChatService to perform bluetooth connections
 			mChatService = new BluetoothChatService(getApplicationContext(), mHandler);
 		}
+		// Initialize the buffer for outgoing messages
+		mOutStringBuffer = new StringBuffer("");
 	}
 
 	@Override
@@ -144,5 +211,39 @@ public class SenderActivity extends ColourBarActivity {
 		display.setText(message);
 	}
 
+	private void writeMessage(String msg) {
+		sendMessage(msg);
+	}
 
+	private void processMassage(String msg) {
+
+	}
+
+	private void setStatus(String msg) {
+
+	}
+
+	/**
+	 * Sends a message.
+	 *
+	 * @param message A string of text to send.
+	 */
+	private void sendMessage(String message) {
+		// Check that we're actually connected before trying anything
+		if (mChatService.getState() != BluetoothChatService.STATE_CONNECTED) {
+			Toast.makeText(this, R.string.not_connected, Toast.LENGTH_SHORT).show();
+			return;
+		}
+
+		// Check that there's actually something to send
+		if (message.length() > 0) {
+			// Get the message bytes and tell the BluetoothChatService to write
+			byte[] send = message.getBytes();
+			mChatService.write(send);
+
+//			// Reset out string buffer to zero and clear the edit text field
+			mOutStringBuffer.setLength(0);
+//			mOutEditText.setText(mOutStringBuffer);
+		}
+	}
 }
