@@ -1,1 +1,6 @@
 include ':app'
+
+def projectDialogsDir = file('/balancedetector')
+def rootProjectDescriptor = settings.rootProject
+settings.createProjectDescriptor(rootProjectDescriptor, 'balancedetector', projectDialogsDir)
+include(':balancedetector')
