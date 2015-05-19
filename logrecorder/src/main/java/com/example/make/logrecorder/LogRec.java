@@ -1,5 +1,7 @@
 package com.example.make.logrecorder;
 
+import com.example.make.logrecorder.table.TestResult;
+
 /**
  * Created by Apipol on 19/05/15.
  */
