@@ -60,13 +60,14 @@ public class FlightSetFragment extends Fragment {
 	private boolean timeOn;
 
 	private int currentColour;
-
+	private ReceiverFragmentListener rListener;
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
 		try {
 			//add Listener
-			ReceiverFragmentListener rListener = (ReceiverFragmentListener) activity;
+
+			rListener = (ReceiverFragmentListener) activity;
 		} catch (ClassCastException e) {
 			throw new ClassCastException(activity.toString() + " must implement OnArticleSelectedListener");
 		}
@@ -99,9 +100,8 @@ public class FlightSetFragment extends Fragment {
 		Fragment monitor = new ReceiverFragment();
 		monitor.setArguments(bundle);
 		Log.d(TAG, "start other");
-		((ReceiverActivity) getActivity()).sendMessage("T:B:" + level);
 		((ReceiverActivity) getActivity()).replaceFragment(monitor, 2);
-//        ((ReceiverActivity)getActivity()).sentdata("1."+level);
+
 	}
 
 
@@ -252,6 +252,13 @@ public class FlightSetFragment extends Fragment {
 
 		});
 		colorAnimation.start();
+	}
+
+
+	@Override
+	public void onDetach() {
+		super.onDetach();
+		rListener = null;
 	}
 
 }

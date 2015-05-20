@@ -5,24 +5,18 @@ import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
 
-public class SenderActivity extends BluetoothActivity implements SensorEventListener {
+public class SenderActivity extends BluetoothActivity implements SensorListenerFragment.OnFragmentInteractionListener {
 
-
+	private String TAG = "SenderActivity";
 	private TextView display;
-	/**
-	 * The Handler that gets information back from the BluetoothChatService
-	 */
-
 	private Button discover;
 	private Button sb;
 	private Button su;
@@ -34,7 +28,7 @@ public class SenderActivity extends BluetoothActivity implements SensorEventList
 	private TextView status;
 	private int statusb = 0;
 	private int rating = 0;
-
+	private int level;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +40,18 @@ public class SenderActivity extends BluetoothActivity implements SensorEventList
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
 		}
 		setContentView(R.layout.activity_sender);
+		getFragmentManager().beginTransaction().add(R.id.sensor_listener, new SensorListenerFragment()).commit();
 
 		setupBluetooth();
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
+		setupDebugButton();
+		rating = 1;
+		statusb = 1;
+
+	}
+
+	private void setupDebugButton() {
 		discover = (Button) findViewById(R.id.discover_rec);
 		discover.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -121,9 +123,6 @@ public class SenderActivity extends BluetoothActivity implements SensorEventList
 				updateData();
 			}
 		});
-		rating = 1;
-		statusb = 1;
-
 	}
 
 	private void setupBluetooth() {
@@ -148,28 +147,28 @@ public class SenderActivity extends BluetoothActivity implements SensorEventList
 		sendMessage(update + ":" + statusb + ":" + rating);
 	}
 
-	private void processMassage(String msg) {
-
+	public void updateData(int status, int rating) {//compact data
+		this.statusb = status;
+		this.rating = rating;
+		updateData();
 	}
-
-	private void setStatus(String msg) {
-
-	}
-
 
 	private Activity getActivity() {
 		return SenderActivity.this;
 	}
 
+	//message receive from bluetooth to be process and sent to fragment
 	@Override
 	protected void messageReceive(String s) {
 		displayMessagerecieve(s);
 		String receive[] = s.split(":");
-//		Log.d(TAG, s);
+		Log.d(TAG, s);
 		switch (receive[0]) {
 			case "T":
 				switch (receive[1]) {
 					case "S":
+						//stop
+						int time = Integer.parseInt(receive[2]);
 						break;
 					case "R":
 						//resume
@@ -178,19 +177,22 @@ public class SenderActivity extends BluetoothActivity implements SensorEventList
 						//pause
 						break;
 					case "B":
+						//begin (start)
+						level = Integer.parseInt(receive[2]);
 						break;
 				}
+				onTimeControlChange(receive[1]);
 				break;
 		}
 	}
 
-	@Override
-	public void onSensorChanged(SensorEvent event) {
-
-	}
 
 	@Override
-	public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
+	public void onTimeControlChange(String what) {
+		SensorListenerFragment SensorLisFrag = (SensorListenerFragment) getFragmentManager().findFragmentById(R.id.sensor_listener);
+		if (what.equals("B")) {
+			SensorLisFrag.setLevel(level);
+		}
+		SensorLisFrag.setStatus(what);
 	}
 }

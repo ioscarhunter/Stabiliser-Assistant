@@ -43,6 +43,7 @@ public class ReceiverFragment extends Fragment {
 
 	private ReceiverActivity receiverActivity;
 
+	private int grade;
 	private int level;
 
 	private boolean firstTime;
@@ -65,6 +66,12 @@ public class ReceiverFragment extends Fragment {
 			throw new ClassCastException(activity.toString() + " must implement OnArticleSelectedListener");
 		}
 
+	}
+
+	@Override
+	public void onDetach() {
+		super.onDetach();
+		rListener = null;
 	}
 
 	@Override
@@ -105,7 +112,10 @@ public class ReceiverFragment extends Fragment {
 			timer.clearAnimation();
 			if (!firstTime) {
 				receiverActivity.sendMessage("T:" + "R");
-			} else firstTime = false;
+			} else {
+				receiverActivity.sendMessage("T:" + "B:" + level);
+				firstTime = false;
+			}
 		}
 	}
 
@@ -136,7 +146,7 @@ public class ReceiverFragment extends Fragment {
 		Fragment summary = new SummaryFragment();
 		Bundle extra = new Bundle();
 		extra.putInt("Time", totalTime);
-		extra.putInt("Level", level);
+		extra.putInt("Level", grade);
 		summary.setArguments(extra);
 		receiverActivity.replaceFragment(summary, 3);
 	}
@@ -169,9 +179,9 @@ public class ReceiverFragment extends Fragment {
 		start.setBackgroundColor(getResources().getColor(R.color.black));
 		rating = (RatingBar) view.findViewById(R.id.level_rating);
 		timeOn = false;
-		level = 5;
+		grade = 5;
 		setupTimer();
-		setLevel(level);
+		setGrade(grade);
 		setStatus(0);
 		startTime();
 	}
@@ -179,7 +189,7 @@ public class ReceiverFragment extends Fragment {
 	private void setupTimer() {
 		Bundle bundle = this.getArguments();
 		final long setedTime = bundle.getLong("time");
-
+		level = bundle.getInt("level");
 		countdown = (Chronometer) view.findViewById(R.id.countdown);
 		countdown.setBase(SystemClock.elapsedRealtime() - setedTime);
 
@@ -214,9 +224,9 @@ public class ReceiverFragment extends Fragment {
 		anim.setRepeatCount(Animation.INFINITE);
 	}
 
-	private void setLevel(int level) {
-		rating.setProgress(level);
-		switch (level) {
+	private void setGrade(int grade) {
+		rating.setProgress(grade);
+		switch (grade) {
 			case 1:
 				setColourAnimation(status_level, currentColour, R.color.c_l1, 300);
 				currentColour = R.color.c_l1;
@@ -282,8 +292,8 @@ public class ReceiverFragment extends Fragment {
 	}
 
 	public void updateData(int status, int level) {
-		this.level = level;
-		setLevel(level);
+		this.grade = level;
+		setGrade(level);
 		setStatus(status);
 	}
 

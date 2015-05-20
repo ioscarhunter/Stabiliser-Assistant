@@ -57,12 +57,7 @@ public class BluetoothActivity extends ColourBarActivity {
 							break;
 					}
 					break;
-//                case Constants.MESSAGE_WRITE:
-//                    byte[] writeBuf = (byte[]) msg.obj;
-//                    // construct a string from the buffer
-//                    String writeMessage = new String(writeBuf);
-//                    mConversationArrayAdapter.add("Me:  " + writeMessage);
-//                    break;
+
 				case Constants.MESSAGE_READ:    //get the message
 					byte[] readBuf = (byte[]) msg.obj;
 					// construct a string from the valid bytes in the buffer
