@@ -1,4 +1,4 @@
-package com.starboy.karav.SA;
+package com.starboy.karav.SA.UI;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -9,8 +9,9 @@ import android.os.Handler;
 import android.os.Message;
 import android.widget.Toast;
 
-import com.starboy.karav.Bluetooth.BluetoothChatService;
-import com.starboy.karav.Bluetooth.Constants;
+import com.starboy.karav.SA.Bluetooth.BluetoothChatService;
+import com.starboy.karav.SA.Bluetooth.Constants;
+import com.starboy.karav.SA.R;
 
 /**
  * Created by Karav on 5/19/2015.

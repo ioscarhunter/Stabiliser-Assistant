@@ -1,4 +1,4 @@
-package com.starboy.karav.SA;
+package com.starboy.karav.SA.UI;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import com.starboy.karav.SA.R;
 
 
 public class ReceiverActivity extends BluetoothActivity implements ReceiverFragment.ReceiverFragmentListener {
@@ -73,14 +75,14 @@ public class ReceiverActivity extends BluetoothActivity implements ReceiverFragm
 		switch (requestCode) {
 			case REQUEST_GET_DEVICE:
 				// When DeviceListActivity returns with a device to connect
-				if (resultCode == Activity.RESULT_OK) {
+				if (resultCode == RESULT_OK) {
 					data.getStringExtra("");
 					connectDevice(data.getStringExtra(EXTRA_DEVICE_ADDRESS));
 				}
 				break;
 			case REQUEST_ENABLE_BT:
 				// When the request to enable Bluetooth returns
-				if (resultCode != Activity.RESULT_OK) {
+				if (resultCode != RESULT_OK) {
 					// User did not enable Bluetooth or an error occurred
 					Log.d(TAG, "BT not enabled");
 					Toast.makeText(getActivity(), R.string.bt_not_enabled_leaving, Toast.LENGTH_SHORT).show();

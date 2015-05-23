@@ -1,4 +1,4 @@
-package com.starboy.karav.SA;
+package com.starboy.karav.SA.UI;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,6 +6,8 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
+
+import com.starboy.karav.SA.R;
 
 
 public class BluetoothDeviceListActivity extends ColourBarActivity {

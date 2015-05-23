@@ -1,4 +1,4 @@
-package com.starboy.karav.SA;
+package com.starboy.karav.SA.Sensor;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -12,7 +12,7 @@ import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 
 
-public class Process {
+public class SensorProcess {
 	private double r;
 	private double r_level;
 
@@ -30,7 +30,7 @@ public class Process {
 	public int rate(int all_num, int balance_num) {
 		int grade;
 		double percentage = ((double) balance_num / (double) all_num) * 100;
-		Log.d("Process", percentage + " %");
+		Log.d("SensorProcess", percentage + " %");
 		if (percentage >= 80) {
 			grade = 5;
 		} else if (percentage >= 60) {

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.starboy.karav.SA;
+package com.starboy.karav.SA.UI;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -36,6 +36,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.starboy.karav.SA.R;
 
 import java.util.Set;
 

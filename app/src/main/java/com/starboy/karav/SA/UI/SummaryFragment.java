@@ -1,4 +1,4 @@
-package com.starboy.karav.SA;
+package com.starboy.karav.SA.UI;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Chronometer;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
+import com.starboy.karav.SA.R;
 
 
 /**

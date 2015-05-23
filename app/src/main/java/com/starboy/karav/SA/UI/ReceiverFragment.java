@@ -1,4 +1,4 @@
-package com.starboy.karav.SA;
+package com.starboy.karav.SA.UI;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
@@ -17,6 +17,8 @@ import android.widget.Chronometer;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.starboy.karav.SA.R;
 
 
 /**

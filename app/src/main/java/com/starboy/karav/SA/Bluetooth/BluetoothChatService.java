@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.starboy.karav.Bluetooth;
+package com.starboy.karav.SA.Bluetooth;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;

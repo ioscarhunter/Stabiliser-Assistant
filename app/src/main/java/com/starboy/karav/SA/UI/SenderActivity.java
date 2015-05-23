@@ -1,4 +1,4 @@
-package com.starboy.karav.SA;
+package com.starboy.karav.SA.UI;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -11,7 +11,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 
-import com.starboy.karav.Bluetooth.BluetoothChatService;
+import com.starboy.karav.SA.Bluetooth.BluetoothChatService;
+import com.starboy.karav.SA.R;
 
 
 public class SenderActivity extends BluetoothActivity implements SensorListenerFragment.OnFragmentInteractionListener {

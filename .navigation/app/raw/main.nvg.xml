@@ -4,12 +4,12 @@
     <locations class="java.util.ArrayList">
         <statePointEntry>
             <state class="com.android.tools.idea.editors.navigation.model.ActivityState"
-                   className="com.starboy.karav.SA.BluetoothDeviceListActivity"/>
+                   className="com.starboy.karav.SA.UI.BluetoothDeviceListActivity"/>
             <point x="2080" y="100" />
         </statePointEntry>
         <statePointEntry>
             <state class="com.android.tools.idea.editors.navigation.model.ActivityState"
-                className="com.starboy.karav.SA.MainActivity" />
+                   className="com.starboy.karav.SA.UI.MainActivity"/>
             <point x="500" y="100" />
         </statePointEntry>
         <statePointEntry>
@@ -19,12 +19,12 @@
         </statePointEntry>
         <statePointEntry>
             <state class="com.android.tools.idea.editors.navigation.model.ActivityState"
-                className="com.starboy.karav.SA.ReceiverActivity" />
+                   className="com.starboy.karav.SA.UI.ReceiverActivity"/>
             <point x="2080" y="2120" />
         </statePointEntry>
         <statePointEntry>
             <state class="com.android.tools.idea.editors.navigation.model.ActivityState"
-                   className="com.starboy.karav.SA.SenderActivity"/>
+                   className="com.starboy.karav.SA.UI.SenderActivity"/>
             <point x="550" y="4190" />
         </statePointEntry>
     </locations>
