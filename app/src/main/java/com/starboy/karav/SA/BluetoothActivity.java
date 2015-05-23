@@ -7,20 +7,16 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.widget.Toast;
+
+import com.starboy.karav.Bluetooth.BluetoothChatService;
+import com.starboy.karav.Bluetooth.Constants;
 
 /**
  * Created by Karav on 5/19/2015.
  */
 public class BluetoothActivity extends ColourBarActivity {
 	protected static final int REQUEST_ENABLE_BT = 3;
-	protected static final int REQUEST_GET_DEVICE = 2;
-	public static String EXTRA_DEVICE_ADDRESS = "device_address";
-	protected String update = "U";
-	protected String result = "R";
-	protected String timer = "T";
-	protected String summary = "S";
 	protected boolean connect;
 
 	/**
@@ -36,20 +32,7 @@ public class BluetoothActivity extends ColourBarActivity {
 			Activity activity = getActivity();
 			switch (msg.what) {
 				case Constants.MESSAGE_STATE_CHANGE:
-					switch (msg.arg1) {
-						case BluetoothChatService.STATE_CONNECTED:
-//                            (getActivity()).setTitle(getString(R.string.title_connected_to, mConnectedDeviceName));
-//                            mConversationArrayAdapter.clear();
-							break;
-						case BluetoothChatService.STATE_CONNECTING:
-//                            setStatus(R.string.title_connecting);
-							break;
-						case BluetoothChatService.STATE_LISTEN:
-							break;
-						case BluetoothChatService.STATE_NONE:
-//                            setStatus(R.string.title_not_connected);
-							break;
-						case BluetoothChatService.STATE_LOST:
+					if (msg.arg1 == BluetoothChatService.STATE_LOST) {
 							mConnectedDeviceName = null;
 							setStatusBarColour(R.color.status_noconnected);
 							setActionBarColour(getResources().getString(R.string.not_connected), R.color.title_noconnected);
@@ -62,13 +45,12 @@ public class BluetoothActivity extends ColourBarActivity {
 					byte[] readBuf = (byte[]) msg.obj;
 					// construct a string from the valid bytes in the buffer
 					messageReceive(new String(readBuf, 0, msg.arg1));
-//                    mConversationArrayAdapter.add(mConnectedDeviceName + ":  " + readMessage);
 					break;
 				case Constants.MESSAGE_DEVICE_NAME:
 					// save the connected device's name
 					mConnectedDeviceName = msg.getData().getString(Constants.DEVICE_NAME);
 					if (null != activity) {
-						Toast.makeText(activity, "Connected to " + mConnectedDeviceName, Toast.LENGTH_SHORT).show();
+//						Toast.makeText(activity, "Connected to " + mConnectedDeviceName, Toast.LENGTH_SHORT).show();
 						setStatusBarColour(R.color.title_connected);
 						setActionBarColour(getResources().getString(R.string.title_connected_to) + " " + mConnectedDeviceName, R.color.status_connected);
 						connect = true;
@@ -167,7 +149,7 @@ public class BluetoothActivity extends ColourBarActivity {
 	 */
 	public void sendMessage(String message) {
 		// Check that we're actually connected before trying anything
-		if (mChatService.getState() != BluetoothChatService.STATE_CONNECTED) {
+		if (!isConnect()) {
 			Toast.makeText(getActivity(), R.string.not_connected, Toast.LENGTH_SHORT).show();
 			return;
 		}
@@ -186,9 +168,9 @@ public class BluetoothActivity extends ColourBarActivity {
 	 */
 	protected void connectDevice(String address) {
 
-		Log.d(TAG, address);
+//		Log.d(TAG, address);
 		// Get the BluetoothDevice object
-		Log.d(TAG, "getRemoteDevice");
+//		Log.d(TAG, "getRemoteDevice");
 		BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
 		// Attempt to connect to the device
 		mChatService.connect(device, false);
@@ -196,6 +178,10 @@ public class BluetoothActivity extends ColourBarActivity {
 
 	private Activity getActivity() {
 		return BluetoothActivity.this;
+	}
+
+	protected boolean isConnect() {
+		return mChatService.getState() == BluetoothChatService.STATE_CONNECTED;
 	}
 
 }

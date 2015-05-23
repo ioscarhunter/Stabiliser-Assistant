@@ -102,6 +102,7 @@ public class BluetoothDiscoveryFragment extends Fragment {
 			}
 		}
 	};
+
 	/**
 	 * The on-click listener for all devices in the ListViews
 	 */
@@ -201,7 +202,7 @@ public class BluetoothDiscoveryFragment extends Fragment {
 		scanButton = (Button) RootView.findViewById(R.id.button_scan);
 		scanButton.setOnClickListener(onClick);
 		setUpListView();
-//        ((BluetoothDeviceListActivity) getActivity()).setTitle(getResources().getText(R.string.select_device).toString());
+
 		return RootView;
 	}
 

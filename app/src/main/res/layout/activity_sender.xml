@@ -13,7 +13,8 @@
         android:paddingTop="@dimen/activity_vertical_margin"
         android:text="@string/wait_for_connect"
         android:textIsSelectable="false"
-        android:textSize="20dp"/>
+        android:textSize="20dp"
+        android:visibility="gone"/>
 
     <Button
         android:id="@+id/discover_rec"
@@ -23,87 +24,17 @@
         android:layout_alignParentStart="true"
         android:layout_weight="1"
         android:background="#ffd5662e"
+        android:longClickable="true"
         android:text="Discoverable"
-        android:textColor="#FFFFFF"
-        />
-
-    <ScrollView
-        android:id="@+id/debugScrollView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/discover_rec"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/connect_status">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/discover_rec"
-            android:layout_alignStart="@+id/connect_status"
-            android:layout_below="@+id/connect_status"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/s_bl"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="set Balance"/>
-
-            <Button
-                android:id="@+id/s_ub"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Set Unbalance"/>
-
-            <Button
-                android:id="@+id/s1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="level 1"/>
-
-            <Button
-                android:id="@+id/s2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="level 2"/>
-
-            <Button
-                android:id="@+id/s3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="level 3"/>
-
-            <Button
-                android:id="@+id/s4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Level 4"/>
-
-            <Button
-                android:id="@+id/s5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="Level 5"/>
-
-            <TextView
-                android:id="@+id/s_status"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Large Text"
-                android:textAppearance="?android:attr/textAppearanceLarge"/>
-        </LinearLayout>
-    </ScrollView>
+        android:textColor="#FFFFFF"/>
 
     <FrameLayout
         android:id="@+id/sensor_listener"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignBottom="@+id/connect_status"
-        android:layout_alignParentEnd="true">
+        android:layout_alignParentEnd="true"
+        android:background="@color/blue_dark">
     </FrameLayout>
 
 </RelativeLayout>

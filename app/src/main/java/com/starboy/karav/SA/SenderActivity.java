@@ -10,22 +10,14 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.TextView;
+
+import com.starboy.karav.Bluetooth.BluetoothChatService;
 
 
 public class SenderActivity extends BluetoothActivity implements SensorListenerFragment.OnFragmentInteractionListener {
 
 	private String TAG = "SenderActivity";
-	private TextView display;
 	private Button discover;
-	private Button sb;
-	private Button su;
-	private Button l1;
-	private Button l3;
-	private Button l5;
-	private Button l2;
-	private Button l4;
-	private TextView status;
 	private int statusb = 0;
 	private int rating = 0;
 	private int level;
@@ -44,83 +36,14 @@ public class SenderActivity extends BluetoothActivity implements SensorListenerF
 
 		setupBluetooth();
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-
-		setupDebugButton();
 		rating = 1;
 		statusb = 1;
 
-	}
-
-	private void setupDebugButton() {
 		discover = (Button) findViewById(R.id.discover_rec);
 		discover.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				ensureDiscoverable();
-			}
-		});
-
-		display = (TextView) findViewById(R.id.connect_status);
-		sb = (Button) findViewById(R.id.s_bl);
-		sb.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				statusb = 0;
-				updateData();
-			}
-		});
-
-		su = (Button) findViewById(R.id.s_ub);
-		su.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				statusb = 1;
-				updateData();
-			}
-		});
-
-		l1 = (Button) findViewById(R.id.s1);
-		l1.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				rating = 1;
-				updateData();
-			}
-		});
-
-		l2 = (Button) findViewById(R.id.s2);
-		l2.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				rating = 2;
-				updateData();
-			}
-		});
-
-		l3 = (Button) findViewById(R.id.s3);
-		l3.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				rating = 3;
-				updateData();
-			}
-		});
-
-		l4 = (Button) findViewById(R.id.s4);
-		l4.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				rating = 4;
-				updateData();
-			}
-		});
-
-		l5 = (Button) findViewById(R.id.s5);
-		l5.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				rating = 5;
-				updateData();
 			}
 		});
 	}
@@ -139,12 +62,9 @@ public class SenderActivity extends BluetoothActivity implements SensorListenerF
 		}
 	}
 
-	private void displayMessagerecieve(String message) {
-		display.setText(message);
-	}
 
 	private void updateData() {
-		sendMessage(update + ":" + statusb + ":" + rating);
+		sendMessage("U:" + statusb + ":" + rating);
 	}
 
 	public void updateData(int status, int rating) {//compact data
@@ -160,27 +80,10 @@ public class SenderActivity extends BluetoothActivity implements SensorListenerF
 	//message receive from bluetooth to be process and sent to fragment
 	@Override
 	protected void messageReceive(String s) {
-		displayMessagerecieve(s);
 		String receive[] = s.split(":");
 		Log.d(TAG, s);
 		switch (receive[0]) {
 			case "T":
-				switch (receive[1]) {
-					case "S":
-						//stop
-						int time = Integer.parseInt(receive[2]);
-						break;
-					case "R":
-						//resume
-						break;
-					case "P":
-						//pause
-						break;
-					case "B":
-						//begin (start)
-						level = Integer.parseInt(receive[2]);
-						break;
-				}
 				onTimeControlChange(receive[1]);
 				break;
 		}

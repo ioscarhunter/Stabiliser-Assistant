@@ -27,7 +27,7 @@ public class MainActivity extends ColourBarActivity {
 				startActivity(new Intent(MainActivity.this, ReceiverActivity.class));
 			}
 		});
-//        getSupportFragmentManager().beginTransaction().add(R.id.fragment, new BluetoothDiscoveryFragment()).commit();
+
 	}
 
 

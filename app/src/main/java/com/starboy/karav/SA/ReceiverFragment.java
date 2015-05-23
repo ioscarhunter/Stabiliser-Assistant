@@ -6,7 +6,6 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -140,8 +139,8 @@ public class ReceiverFragment extends Fragment {
 		// stop countdown
 		countdown.stop();
 		int totalTime = timeStopped();
-		Log.d(TAG, totalTime + " ");
-		//TODO sent stop message to sender
+//		Log.d(TAG, totalTime + " ");
+		// sent stop message to sender
 		receiverActivity.sendMessage("T:S:" + totalTime);
 		Fragment summary = new SummaryFragment();
 		Bundle extra = new Bundle();
@@ -162,7 +161,7 @@ public class ReceiverFragment extends Fragment {
 		start.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				Log.d(TAG, "start click");
+//				Log.d(TAG, "start click");
 				startTime();
 			}
 		});
@@ -230,29 +229,22 @@ public class ReceiverFragment extends Fragment {
 			case 1:
 				setColourAnimation(status_level, currentColour, R.color.c_l1, 300);
 				currentColour = R.color.c_l1;
-
-//                status_level.setBackgroundColor(getResources().getColor(R.color.c_l1));
-//                setColourAnimation(level1, R.color.clear, R.color.c_l1d, 250);
 				break;
 			case 2:
 				setColourAnimation(status_level, currentColour, R.color.c_l2, 300);
 				currentColour = R.color.c_l2;
-//                setColourAnimation(level2, R.color.clear, R.color.c_l2d, 250);
 				break;
 			case 3:
 				setColourAnimation(status_level, currentColour, R.color.c_l3, 300);
 				currentColour = R.color.c_l3;
-//                setColourAnimation(level3, R.color.clear, R.color.c_l3d, 250);
 				break;
 			case 4:
 				setColourAnimation(status_level, currentColour, R.color.c_l4, 300);
 				currentColour = R.color.c_l4;
-//                setColourAnimation(level4, R.color.clear, R.color.c_l4d, 250);
 				break;
 			case 5:
 				setColourAnimation(status_level, currentColour, R.color.c_l5, 300);
 				currentColour = R.color.c_l5;
-//                setColourAnimation(level5, R.color.clear, R.color.c_l5d, 250);
 				break;
 			default:
 				break;
@@ -291,10 +283,14 @@ public class ReceiverFragment extends Fragment {
 		colorAnimation.start();
 	}
 
-	public void updateData(int status, int level) {
+	public void updateData(int status, int level) {//function receive data from activity
 		this.grade = level;
 		setGrade(level);
 		setStatus(status);
+	}
+
+	public interface ReceiverFragmentListener {
+		void onDataReceive(int status, int level);
 	}
 
 }

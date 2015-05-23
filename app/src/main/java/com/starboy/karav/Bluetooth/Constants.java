@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.starboy.karav.SA;
+package com.starboy.karav.Bluetooth;
 
 /**
  * Defines several constants used between {@link BluetoothChatService} and the UI.

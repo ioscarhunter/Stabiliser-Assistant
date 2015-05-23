@@ -2,7 +2,6 @@ package com.starboy.karav.SA;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
-import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -20,22 +19,6 @@ import android.widget.TextView;
  */
 public class FlightSetFragment extends Fragment {
 
-	//    private static final int REQUEST_ENABLE_BT = 3;
-//    /**
-//     * Name of the connected device
-//     */
-//    private String mConnectedDeviceName = null;
-//
-//    /**
-//     * Member object for the chat services
-//     */
-//    private BluetoothChatService mChatService = null;
-//
-//    /**
-//     * Local Bluetooth adapter
-//     */
-//    private BluetoothAdapter mBluetoothAdapter = null;
-
 	private String TAG = "FlightSetF";
 
 	private View view;
@@ -52,7 +35,7 @@ public class FlightSetFragment extends Fragment {
 	private Chronometer countdown;
 	private LinearLayout levelSelector;
 	private Button plus;
-	private Button minu;
+	private Button menu;
 	private long time;
 
 	private int level;
@@ -60,19 +43,6 @@ public class FlightSetFragment extends Fragment {
 	private boolean timeOn;
 
 	private int currentColour;
-	private ReceiverFragmentListener rListener;
-	@Override
-	public void onAttach(Activity activity) {
-		super.onAttach(activity);
-		try {
-			//add Listener
-
-			rListener = (ReceiverFragmentListener) activity;
-		} catch (ClassCastException e) {
-			throw new ClassCastException(activity.toString() + " must implement OnArticleSelectedListener");
-		}
-
-	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -159,20 +129,20 @@ public class FlightSetFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				if (time == (1 * 1000 * 60)) {
-					minu.setTextColor(getResources().getColor(R.color.deep_orange500));
+					menu.setTextColor(getResources().getColor(R.color.deep_orange500));
 				}
 				time += 1 * 1000 * 60;
 				countdown.setBase(SystemClock.elapsedRealtime() - time);
 			}
 		});
-		minu = (Button) view.findViewById(R.id.minus_but);
-		minu.setOnClickListener(new View.OnClickListener() {
+		menu = (Button) view.findViewById(R.id.minus_but);
+		menu.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				if (time > (1 * 1000 * 60)) {
 					time -= 1 * 1000 * 60;
 					if (time == (1 * 1000 * 60)) {
-						minu.setTextColor(getResources().getColor(R.color.blue_grey500));
+						menu.setTextColor(getResources().getColor(R.color.blue_grey500));
 					}
 					countdown.setBase(SystemClock.elapsedRealtime() - time);
 				}
@@ -252,13 +222,6 @@ public class FlightSetFragment extends Fragment {
 
 		});
 		colorAnimation.start();
-	}
-
-
-	@Override
-	public void onDetach() {
-		super.onDetach();
-		rListener = null;
 	}
 
 }

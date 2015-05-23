@@ -38,10 +38,6 @@
             android:label="@string/title_activity_sender"
             android:theme="@style/Theme.AppCompat.Light.DialogWhenLarge"/>
 
-        <activity
-            android:name=".SummaryActivity"
-            android:label="@string/title_activity_summary"
-            android:theme="@style/Widget.AppCompat.Light.ActionBar"/>
     </application>
 
 </manifest>

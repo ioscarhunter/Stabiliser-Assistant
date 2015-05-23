@@ -1,7 +1,6 @@
 package com.starboy.karav.SA;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
@@ -11,7 +10,6 @@ import android.util.Log;
 
 public class BluetoothDeviceListActivity extends ColourBarActivity {
 	private String TAG = "BluetoothDeviceListActivity";
-
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,16 +25,10 @@ public class BluetoothDeviceListActivity extends ColourBarActivity {
 		getFragmentManager().beginTransaction().replace(R.id.sender_fragment, new BluetoothDiscoveryFragment()).commit();
 	}
 
-	public void replaceFragment(Fragment fragment) {
-		Log.d(TAG, "Start new activity");
-//		getFragmentManager().beginTransaction().replace(R.id.sender_fragment, fragment).addToBackStack(null).commit();
-	}
-
 	public void sentBackData(Intent intent) {
 		// Set result and finish this Activity
 		setResult(Activity.RESULT_OK, intent);
 		finish();
 	}
-
 
 }

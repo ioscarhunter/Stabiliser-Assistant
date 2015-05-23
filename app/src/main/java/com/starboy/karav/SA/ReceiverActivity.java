@@ -13,7 +13,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 
-public class ReceiverActivity extends BluetoothActivity implements ReceiverFragmentListener {
+public class ReceiverActivity extends BluetoothActivity implements ReceiverFragment.ReceiverFragmentListener {
 	private static final int REQUEST_ENABLE_BT = 3;
 	private static final int REQUEST_GET_DEVICE = 2;
 	public static String EXTRA_DEVICE_ADDRESS = "device_address";
@@ -36,10 +36,6 @@ public class ReceiverActivity extends BluetoothActivity implements ReceiverFragm
 		getFragmentManager().beginTransaction().add(R.id.r_fragment, new FlightSetFragment()).commit();
 		currentFragment = 1;
 	}
-
-//    private void messageReceive(String message) {
-//        display.setText(message);
-////    }
 
 	private Activity getActivity() {
 		return ReceiverActivity.this;
@@ -84,10 +80,7 @@ public class ReceiverActivity extends BluetoothActivity implements ReceiverFragm
 				break;
 			case REQUEST_ENABLE_BT:
 				// When the request to enable Bluetooth returns
-				if (resultCode == Activity.RESULT_OK) {
-					// Bluetooth is now enabled, so set up a chat session
-//                    setupChat();
-				} else {
+				if (resultCode != Activity.RESULT_OK) {
 					// User did not enable Bluetooth or an error occurred
 					Log.d(TAG, "BT not enabled");
 					Toast.makeText(getActivity(), R.string.bt_not_enabled_leaving, Toast.LENGTH_SHORT).show();
@@ -95,17 +88,7 @@ public class ReceiverActivity extends BluetoothActivity implements ReceiverFragm
 				}
 				break;
 		}
-
 	}
-
-	public void startNewActivity(Class<?> nextActivity, Bundle extra) {
-		Log.d("ReceiverA", Integer.toString(extra.getInt("Time")));
-		Intent intent = new Intent(getApplicationContext(), nextActivity);
-		intent.putExtras(extra);
-		startActivity(intent);
-		this.finish();
-	}
-
 
 	public void replaceFragment(Fragment fragment, int fragmentNum) {
 		Log.d(TAG, "Start new activity");

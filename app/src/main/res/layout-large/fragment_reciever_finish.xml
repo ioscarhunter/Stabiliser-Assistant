@@ -89,6 +89,7 @@
         android:padding="10dp"
         android:text="@string/total_time"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="35dp" />
+        android:textColor="@color/black"
+        android:textSize="35dp"/>
 
 </RelativeLayout>
