@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-      tools:context="com.starboy.karav.SA.UI.ReceiverActivity">
+      tools:context="com.starboy.karav.SA.UI.Receiver.ReceiverActivity">
     <!--<item-->
     <!--android:id="@+id/discover_rec"-->
     <!--android:orderInCategory="100"-->

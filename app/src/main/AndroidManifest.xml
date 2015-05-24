@@ -23,13 +23,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".UI.SenderActivity"
+            android:name=".UI.Sender.SenderActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/title_activity_after_connect"
             android:screenOrientation="landscape"
             android:theme="@style/Widget.AppCompat.Light.ActionBar"/>
         <activity
-            android:name=".UI.ReceiverActivity"
+            android:name=".UI.Receiver.ReceiverActivity"
             android:label="@string/title_activity_reciever"
             android:theme="@style/Widget.AppCompat.Light.ActionBar"/>
         <activity
@@ -37,7 +37,11 @@
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_activity_sender"
             android:theme="@style/Theme.AppCompat.Light.DialogWhenLarge"/>
-
+        <activity
+            android:name=".UI.Database.DatabaseActivity"
+            android:label="@string/title_activity_database"
+            android:theme="@style/Widget.AppCompat.Light.ActionBar">
+        </activity>
     </application>
 
 </manifest>

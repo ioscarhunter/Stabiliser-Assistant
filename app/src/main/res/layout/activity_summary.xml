@@ -1,6 +1,6 @@
 <fragment
     android:id="@+id/fragment_summary"
-    android:name="com.starboy.karav.SA.UI.SummaryFragment"
+    android:name="com.starboy.karav.SA.UI.Receiver.SummaryFragment"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" />

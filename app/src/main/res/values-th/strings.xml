@@ -26,4 +26,7 @@
     <string name="total_time">เวลา</string>
     <string name="make_discover">ทำให้ค้นหาเจอ</string>
     <string name="not_connected">ยังไม่ได้เชื่อมต่อ</string>
+    <string name="level">ระดับ</string>
+    <string name="time">เวลา</string>
+    <string name="database">กิจกรรมที่ผ่านมา</string>
 </resources>

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/white_arctic"
     android:orientation="vertical"
-    tools:context="com.starboy.karav.SA.UI.SummaryFragment">
+    tools:context="com.starboy.karav.SA.UI.Receiver.SummaryFragment">
 
     <Chronometer
         android:id="@+id/s_timer"

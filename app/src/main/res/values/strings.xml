@@ -47,4 +47,8 @@
     <string name="level_3">C</string>
     <string name="level_4">D</string>
     <string name="level_5">E</string>
+    <string name="level">Level</string>
+    <string name="time">Time</string>
+    <string name="title_activity_database">DatabaseActivity</string>
+    <string name="database">Recently Activity</string>
 </resources>

@@ -19,12 +19,12 @@
         </statePointEntry>
         <statePointEntry>
             <state class="com.android.tools.idea.editors.navigation.model.ActivityState"
-                   className="com.starboy.karav.SA.UI.ReceiverActivity"/>
+                   className="com.starboy.karav.SA.UI.Receiver.ReceiverActivity"/>
             <point x="2080" y="2120" />
         </statePointEntry>
         <statePointEntry>
             <state class="com.android.tools.idea.editors.navigation.model.ActivityState"
-                   className="com.starboy.karav.SA.UI.SenderActivity"/>
+                   className="com.starboy.karav.SA.UI.Sender.SenderActivity"/>
             <point x="550" y="4190" />
         </statePointEntry>
     </locations>
