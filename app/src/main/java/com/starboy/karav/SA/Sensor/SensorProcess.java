@@ -16,18 +16,7 @@ public class SensorProcess {
 	private double r;
 	private double r_level;
 
-	public void setlevel(int l) {
-		int num = 3 - l;
-		double base = 0.1;
-		r_level = base + (0.03 * num);
-	}
-
-	public boolean process(double x, double y) {
-		r = sqrt((pow(x, 2) + pow(y, 2)));
-		return (r >= 0.0 && r <= r_level);
-	}
-
-	public int rate(int all_num, int balance_num) {
+	public static int rate(int all_num, int balance_num) {
 		int grade;
 		double percentage = ((double) balance_num / (double) all_num) * 100;
 		Log.d("SensorProcess", percentage + " %");
@@ -43,6 +32,17 @@ public class SensorProcess {
 			grade = 1;
 		}
 		return grade;
+	}
+
+	public void setlevel(int l) {
+		int num = 3 - l;
+		double base = 0.1;
+		r_level = base + (0.03 * num);
+	}
+
+	public boolean process(double x, double y) {
+		r = sqrt((pow(x, 2) + pow(y, 2)));
+		return (r >= 0.0 && r <= r_level);
 	}
 
 }

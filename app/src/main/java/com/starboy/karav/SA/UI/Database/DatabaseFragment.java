@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.starboy.karav.SA.Database.DatabaseHelper;
 import com.starboy.karav.SA.Database.Flight;
 import com.starboy.karav.SA.R;
 
@@ -22,6 +23,7 @@ public class DatabaseFragment extends Fragment {
 	private RecyclerView mRecyclerView;
 	private RecyclerView.Adapter mAdapter;
 	private RecyclerView.LayoutManager mLayoutManager;
+	private DatabaseHelper dbHelper;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

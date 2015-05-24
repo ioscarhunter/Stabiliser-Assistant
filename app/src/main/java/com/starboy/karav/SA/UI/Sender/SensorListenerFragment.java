@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 import com.starboy.karav.SA.R;
 import com.starboy.karav.SA.Sensor.SensorProcess;
 
+import static com.starboy.karav.SA.Sensor.SensorProcess.rate;
+
 public class SensorListenerFragment extends Fragment implements SensorEventListener {
 
 	public int totalCounter = 0;
@@ -89,7 +91,7 @@ public class SensorListenerFragment extends Fragment implements SensorEventListe
 				}
 			}
 			totalCounter++;
-			int rate = p.rate(totalCounter, balanceCounter); //calculate rate
+			int rate = rate(totalCounter, balanceCounter); //calculate rate
 //			Log.d("SensorFrag", "d" + rate + status);
 			((SenderActivity) getActivity()).updateData(status, rate);
 		}
