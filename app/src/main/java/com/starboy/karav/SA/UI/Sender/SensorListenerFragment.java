@@ -31,7 +31,6 @@ public class SensorListenerFragment extends Fragment implements SensorEventListe
 	private SensorProcess p;
 	private boolean bEnableLogging;
 	private int status;
-
 	private OnFragmentInteractionListener mListener;
 
 	@Override //set listener for activity
@@ -93,7 +92,7 @@ public class SensorListenerFragment extends Fragment implements SensorEventListe
 			totalCounter++;
 			int rate = rate(totalCounter, balanceCounter); //calculate rate
 //			Log.d("SensorFrag", "d" + rate + status);
-			((SenderActivity) getActivity()).updateData(status, rate);
+			((SenderActivity) getActivity()).updateData(status, rate, balanceCounter, totalCounter);
 		}
 	}
 
@@ -138,6 +137,7 @@ public class SensorListenerFragment extends Fragment implements SensorEventListe
 
 	public void stop() {
 		pause();
+		addToDB();
 	}
 
 
@@ -158,6 +158,10 @@ public class SensorListenerFragment extends Fragment implements SensorEventListe
 		}
 	}
 
+	public void addToDB() {
+//		Flight flight = new Flight(totalCounter,balanceCounter,level,ti);
+	}
+
 	public void setLevel(int level) {
 		this.level = level;
 	}
@@ -174,7 +178,7 @@ public class SensorListenerFragment extends Fragment implements SensorEventListe
 	 */
 	public interface OnFragmentInteractionListener {
 		// TODO: Update argument type and name
-		void onTimeControlChange(String what);
+		void onTimeControlChange(String[] what);
 	}
 
 

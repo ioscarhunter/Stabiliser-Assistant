@@ -2,6 +2,7 @@ package com.starboy.karav.SA.UI.Database;
 
 /**
  * Created by Karav on 5/23/2015.
+ * custom view on Database list activity
  */
 
 import android.content.Context;

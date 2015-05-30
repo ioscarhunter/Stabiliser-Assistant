@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.starboy.karav.SA.R;
 import com.starboy.karav.SA.UI.BluetoothActivity;
-import com.starboy.karav.SA.UI.BluetoothDeviceListActivity;
+import com.starboy.karav.SA.UI.BluetoothList.BluetoothDeviceListActivity;
 
 
 public class ReceiverActivity extends BluetoothActivity implements ReceiverFragment.ReceiverFragmentListener {

@@ -17,7 +17,7 @@ public class Flight {
 	public static final String TABLE = "flight";
 	private int rating;
 	private int total;
-	private int inbal;
+	private int bal;
 	private int level;
 	private int takeTime;
 	private Date flightDate;
@@ -25,27 +25,13 @@ public class Flight {
 	public Flight() {
 	}
 
-	public Flight(int total, int inbal, int level, int takeTime, Date flightDate) {
+	public Flight(int total, int bal, int level, int takeTime, Date flightDate) {
 		this.total = total;
-		this.inbal = inbal;
+		this.bal = bal;
 		this.level = level;
 		this.takeTime = takeTime;
 		this.flightDate = flightDate;
-		this.rating = SensorProcess.rate(total, inbal);
-	}
-
-	public Flight(int rating, int level, int takeTime) {
-		this.rating = rating;
-		this.level = level;
-		this.takeTime = takeTime;
-		this.flightDate = new Date();
-	}
-
-	public Flight(int rating, int level, int takeTime, Date flightDate) {
-		this.rating = rating;
-		this.level = level;
-		this.takeTime = takeTime;
-		this.flightDate = flightDate;
+		this.rating = SensorProcess.rate(total, bal);
 	}
 
 	public int getRating() {
@@ -64,12 +50,12 @@ public class Flight {
 		this.total = total;
 	}
 
-	public int getInbal() {
-		return inbal;
+	public int getBal() {
+		return bal;
 	}
 
-	public void setInbal(int inbal) {
-		this.inbal = inbal;
+	public void setBal(int bal) {
+		this.bal = bal;
 	}
 
 	public int getLevel() {
@@ -109,7 +95,7 @@ public class Flight {
 		public static final String LEVEL = "level";
 		public static final String TAKETTIME = "take_time";
 		public static final String DATETIME = "datetime";
-		public static final String INBAL = "inbal";
+		public static final String INBAL = "bal";
 		public static final String TOTAL = "total";
 	}
 }

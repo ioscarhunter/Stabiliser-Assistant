@@ -30,14 +30,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		String CREATE_FLIGHT_TABLE = "CREATE TABLE" + Flight.TABLE + "(" +
-				"INTEGER PRIMARY KEY  AUTOINCREMENT " + Flight.Column.ID +
-				"INTEGER " + Flight.Column.TOTAL +
-				"INTEGER " + Flight.Column.INBAL +
-				"INTEGER " + Flight.Column.LEVEL +
-				"INTEGER " + Flight.Column.TAKETTIME +
-				"TEXT" + Flight.Column.DATETIME + ")";
-
+		String CREATE_FLIGHT_TABLE = "CREATE TABLE " + Flight.TABLE + "(" +
+				Flight.Column.ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+				Flight.Column.TOTAL + " INTEGER," +
+				Flight.Column.INBAL + " INTEGER," +
+				Flight.Column.LEVEL + " INTEGER," +
+				Flight.Column.TAKETTIME + " INTEGER," +
+				Flight.Column.DATETIME + " TEXT " + ")";
 
 		Log.i(TAG, CREATE_FLIGHT_TABLE);
 
@@ -81,7 +80,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				Log.e(TAG, "Parsing ISO8601 datetime failed", e);
 			}
 
-
 			cursor.moveToNext();
 		}
 
@@ -90,13 +88,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		return friends;
 	}
 
-	public void addFriend(Flight friend) {
+	public void addFlight(Flight friend) {
 		sqLiteDatabase = this.getWritableDatabase();
 
 		ContentValues values = new ContentValues();
 		//values.put(Friend.Column.ID, friend.getId());
 		values.put(Flight.Column.TOTAL, friend.getTotal());
-		values.put(Flight.Column.INBAL, friend.getInbal());
+		values.put(Flight.Column.INBAL, friend.getBal());
 		values.put(Flight.Column.LEVEL, friend.getLevel());
 		values.put(Flight.Column.TAKETTIME, friend.getTakeTime());
 		values.put(Flight.Column.DATETIME, friend.getFlightDateString());

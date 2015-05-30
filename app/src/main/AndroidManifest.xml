@@ -33,7 +33,7 @@
             android:label="@string/title_activity_reciever"
             android:theme="@style/Widget.AppCompat.Light.ActionBar"/>
         <activity
-            android:name=".UI.BluetoothDeviceListActivity"
+            android:name=".UI.BluetoothList.BluetoothDeviceListActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_activity_sender"
             android:theme="@style/Theme.AppCompat.Light.DialogWhenLarge"/>

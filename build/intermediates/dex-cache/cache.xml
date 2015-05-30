@@ -2,44 +2,44 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\Karav\AppData\Local\Android\android-sdk\extras\android\m2repository\com\android\support\support-annotations\22.1.1\support-annotations-22.1.1.jar"
+        jar="D:\Drive\AStudio\MyApplication\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\libs\internal_impl-22.2.0.jar"
         jumboMode="false"
-        revision="22.0.1"
-        sha1="01d051a6bfb1218b1db2d3a5af0480ac2c25c42a">
+        revision="23.0.0 rc1"
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
         <dex
-            dex="D:\Drive\AStudio\MyApplication\app\build\intermediates\pre-dexed\debug\support-annotations-22.1.1-225dc9e87895edf23b883bf9bc983a9185c6b501.jar"/>
+            dex="D:\Drive\AStudio\MyApplication\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.0-ead28a8e76824e41925e2ed767158ce22be5e64d.jar"/>
     </item>
     <item
-        jar="D:\Drive\AStudio\MyApplication\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.1\jars\classes.jar"
+        jar="C:\Users\Karav\AppData\Local\Android\android-sdk\extras\android\m2repository\com\android\support\support-annotations\22.2.0\support-annotations-22.2.0.jar"
         jumboMode="false"
-        revision="22.0.1"
-        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
+        revision="23.0.0 rc1"
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
         <dex
-            dex="D:\Drive\AStudio\MyApplication\app\build\intermediates\pre-dexed\debug\classes-152206c81954bbb56c13c1b2f93e5e82c543afac.jar"/>
+            dex="D:\Drive\AStudio\MyApplication\app\build\intermediates\pre-dexed\debug\support-annotations-22.2.0-17fcf6e0da6f523de725e77cd7418661bfccb839.jar"/>
     </item>
     <item
-        jar="D:\Drive\AStudio\MyApplication\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.1\jars\libs\internal_impl-22.1.1.jar"
+        jar="D:\Drive\AStudio\MyApplication\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\classes.jar"
         jumboMode="false"
-        revision="22.0.1"
-        sha1="9e070ad32b2700b0343e8e0cccc437733d91ba3a">
+        revision="23.0.0 rc1"
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
         <dex
-            dex="D:\Drive\AStudio\MyApplication\app\build\intermediates\pre-dexed\debug\internal_impl-22.1.1-67110ff320e4a9dd4a09b117fcf6db9694584ba4.jar"/>
+            dex="D:\Drive\AStudio\MyApplication\app\build\intermediates\pre-dexed\debug\classes-d9e190762341eade7644523034eb2e81e171f87a.jar"/>
     </item>
     <item
-        jar="D:\Drive\AStudio\MyApplication\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.1.1\jars\classes.jar"
+        jar="D:\Drive\AStudio\MyApplication\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.0\jars\classes.jar"
         jumboMode="false"
-        revision="22.0.1"
-        sha1="a3ff3c506644c820eb2bdf06e8339f72be578551">
+        revision="23.0.0 rc1"
+        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
         <dex
-            dex="D:\Drive\AStudio\MyApplication\app\build\intermediates\pre-dexed\debug\classes-a952535d858c47a1b8e3b482a58330d9e46db4e4.jar"/>
+            dex="D:\Drive\AStudio\MyApplication\app\build\intermediates\pre-dexed\debug\classes-7173987f1d7fe846d343146a9a093084e3f55363.jar"/>
     </item>
     <item
-        jar="D:\Drive\AStudio\MyApplication\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\22.1.1\jars\classes.jar"
+        jar="D:\Drive\AStudio\MyApplication\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\22.2.0\jars\classes.jar"
         jumboMode="false"
-        revision="22.0.1"
-        sha1="e0b0c35d02308b270015a74cada4887e2e49b889">
+        revision="23.0.0 rc1"
+        sha1="5b37cf49773f7f17aca9830efd3053b0cac56728">
         <dex
-            dex="D:\Drive\AStudio\MyApplication\app\build\intermediates\pre-dexed\debug\classes-88f4583175fb77440c2871ee56d58519c8302406.jar"/>
+            dex="D:\Drive\AStudio\MyApplication\app\build\intermediates\pre-dexed\debug\classes-186cf8f0612fca0a517cd74a50fdba0e1cd4094b.jar"/>
     </item>
 
 </items>
