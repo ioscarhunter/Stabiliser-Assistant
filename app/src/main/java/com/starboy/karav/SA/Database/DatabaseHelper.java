@@ -7,11 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,9 +15,10 @@ import java.util.List;
  * database access
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
+
 	public static final String DATABASE_NAME = "SA_flight.db";
 	public static final int DATABASE_VERSION = 1;
-	private final String TAG = "DatabaseHelper";
+	private static final String TAG = "DBHelper";
 	private SQLiteDatabase sqLiteDatabase;
 
 	public DatabaseHelper(Context context) {
@@ -67,19 +64,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		}
 
 		while (!cursor.isAfterLast()) {
+			Log.d(TAG, "REad DB");
 			int total = cursor.getInt(1);
 			int inbal = cursor.getInt(2);
 			int level = cursor.getInt(3);
 			int takeTime = cursor.getInt(4);
 			String dateTime = cursor.getString(5);
-			DateFormat iso8601Format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			try {
-				Date date = iso8601Format.parse(dateTime);
-				friends.add(new Flight(total, inbal, level, takeTime, date));
-			} catch (ParseException e) {
-				Log.e(TAG, "Parsing ISO8601 datetime failed", e);
-			}
-
+			friends.add(new Flight(total, inbal, level, takeTime, dateTime));
 			cursor.moveToNext();
 		}
 

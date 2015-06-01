@@ -56,5 +56,7 @@
     <color name="green_spring">#00FF7F</color>
     <color name="purple_orchid">#DA70D6</color>
     <color name="grey_light">#B0B0B0</color>
+    <color name="white_pure">#FFFFFF</color>
+    <color name="window_background">#FFF5F5F5</color>
 
 </resources>

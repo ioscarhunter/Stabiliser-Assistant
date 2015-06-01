@@ -1,10 +1,12 @@
 package com.starboy.karav.SA.Database;
 
 import android.provider.BaseColumns;
+import android.util.Log;
 
 import com.starboy.karav.SA.Sensor.SensorProcess;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
@@ -15,23 +17,61 @@ import java.util.TimeZone;
  */
 public class Flight {
 	public static final String TABLE = "flight";
+	private static final String TAG = "Flight";
 	private int rating;
 	private int total;
 	private int bal;
 	private int level;
 	private int takeTime;
 	private Date flightDate;
+	private TimeZone tz;
 
-	public Flight() {
+	private DateFormat iso8601Format;
+
+	private Flight() {
+		tz = TimeZone.getDefault();
+		iso8601Format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
+		iso8601Format.setTimeZone(tz);
 	}
 
 	public Flight(int total, int bal, int level, int takeTime, Date flightDate) {
+		this();
+		Log.d(TAG, "new Flight");
 		this.total = total;
 		this.bal = bal;
 		this.level = level;
 		this.takeTime = takeTime;
 		this.flightDate = flightDate;
 		this.rating = SensorProcess.rate(total, bal);
+	}
+
+
+	public Flight(int total, int bal, int level, int takeTime, String flightDate) {
+		this();
+		Log.d(TAG, "new Flight");
+		this.total = total;
+		this.bal = bal;
+		this.level = level;
+		this.takeTime = takeTime;
+		this.flightDate = getDateFromString(flightDate);
+		this.rating = SensorProcess.rate(total, bal);
+	}
+
+	public Flight(int total, int bal, int level, int takeTime) {
+		this.total = total;
+		this.bal = bal;
+		this.level = level;
+		this.takeTime = takeTime;
+		this.flightDate = new Date();
+	}
+
+	private Date getDateFromString(String date) {
+		try {
+			return iso8601Format.parse(date);
+		} catch (ParseException e) {
+			Log.e(TAG, e.getMessage());
+		}
+		return null;
 	}
 
 	public int getRating() {
@@ -83,10 +123,7 @@ public class Flight {
 	}
 
 	public String getFlightDateString() {
-		TimeZone tz = TimeZone.getDefault();
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
-		df.setTimeZone(tz);
-		return df.format(new Date());
+		return iso8601Format.format(new Date());
 	}
 
 	public class Column {

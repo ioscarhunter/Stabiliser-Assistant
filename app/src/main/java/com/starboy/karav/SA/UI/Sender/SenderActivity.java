@@ -111,6 +111,7 @@ public class SenderActivity extends BluetoothActivity implements SensorListenerF
 		SensorListenerFragment SensorLisFrag = (SensorListenerFragment) getFragmentManager().findFragmentById(R.id.sensor_listener);
 		if (what[1].equals("S")) {
 			time = Integer.parseInt(what[2]);
+			saveToDB();
 		}
 		if (what[1].equals("B")) {
 			level = Integer.parseInt(what[2]);

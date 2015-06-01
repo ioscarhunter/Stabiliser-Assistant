@@ -52,8 +52,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 		if (level == 2) return R.string.level_2;
 		if (level == 3) return R.string.level_3;
 		if (level == 4) return R.string.level_4;
-		if (level == 5) return R.string.level_5;
-		return 0;
+		else return R.string.level_5;
 	}
 
 	private int getIndicator(int colour) {
@@ -61,8 +60,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 		if (colour == 2) return R.color.c_l2;
 		if (colour == 3) return R.color.c_l3;
 		if (colour == 4) return R.color.c_l4;
-		if (colour == 5) return R.color.c_l5;
-		return 0;
+		else return R.color.c_l5;
+
 	}
 
 	@Override

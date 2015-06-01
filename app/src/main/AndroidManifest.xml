@@ -40,8 +40,7 @@
         <activity
             android:name=".UI.Database.DatabaseActivity"
             android:label="@string/title_activity_database"
-            android:theme="@style/Widget.AppCompat.Light.ActionBar">
-        </activity>
+            android:theme="@style/Theme.DesignDemo"/>
     </application>
 
 </manifest>
