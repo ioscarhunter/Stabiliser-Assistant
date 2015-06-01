@@ -217,8 +217,8 @@ public class BluetoothDiscoveryFragment extends Fragment {
 	private void setUpListView() {
 		// Initialize array adapters. One for already paired devices and
 		// one for newly discovered devices
-		ArrayAdapter<String> pairedDevicesArrayAdapter = new ArrayAdapter<String>(RootView.getContext(), R.layout.device_name);
-		mNewDevicesArrayAdapter = new ArrayAdapter<String>(RootView.getContext(), R.layout.device_name);
+		ArrayAdapter<String> pairedDevicesArrayAdapter = new ArrayAdapter<>(RootView.getContext(), R.layout.device_name);
+		mNewDevicesArrayAdapter = new ArrayAdapter<>(RootView.getContext(), R.layout.device_name);
 
 		// Find and set up the ListView for paired devices
 		ListView pairedListView = (ListView) RootView.findViewById(R.id.paired_devices);

@@ -15,6 +15,7 @@ import com.starboy.karav.SA.R;
 
 /**
  * Created by Karav on 5/19/2015.
+ * Activity that have ability for bluetooth
  */
 public class BluetoothActivity extends ColourBarActivity {
 	protected static final int REQUEST_ENABLE_BT = 3;

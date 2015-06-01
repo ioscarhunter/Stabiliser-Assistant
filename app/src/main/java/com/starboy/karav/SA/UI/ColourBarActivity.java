@@ -9,6 +9,7 @@ import android.view.WindowManager;
 
 /**
  * Created by Karav on 21/04/2015.
+ * activity that add method for change colour of activityBar
  */
 public class ColourBarActivity extends Activity {
 

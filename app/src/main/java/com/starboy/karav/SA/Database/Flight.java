@@ -63,6 +63,7 @@ public class Flight {
 		this.level = level;
 		this.takeTime = takeTime;
 		this.flightDate = new Date();
+		this.rating = SensorProcess.rate(total, bal);
 	}
 
 	private Date getDateFromString(String date) {

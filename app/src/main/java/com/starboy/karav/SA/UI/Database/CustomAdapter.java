@@ -11,7 +11,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -44,7 +43,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 		viewHolder.level.setText(v.getResources().getString(getCharLevel(flight.getLevel())));
 		viewHolder.rating.setNumStars(flight.getRating());
 		viewHolder.timer.setBase(SystemClock.elapsedRealtime() - flight.getTakeTime());
-		viewHolder.colourIndicator.setBackgroundColor(v.getResources().getColor(getIndicator(flight.getRating())));
+		viewHolder.colourIndicator.setBackgroundResource(getIndicator(flight.getRating()));
 	}
 
 	private int getCharLevel(int level) {
@@ -56,11 +55,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 	}
 
 	private int getIndicator(int colour) {
-		if (colour == 1) return R.color.c_l1;
-		if (colour == 2) return R.color.c_l2;
-		if (colour == 3) return R.color.c_l3;
-		if (colour == 4) return R.color.c_l4;
-		else return R.color.c_l5;
+		if (colour == 1) return R.drawable.circle_l1;
+		if (colour == 2) return R.drawable.circle_l2;
+		if (colour == 3) return R.drawable.circle_l3;
+		if (colour == 4) return R.drawable.circle_l4;
+		else return R.drawable.circle_l5;
 
 	}
 
@@ -73,7 +72,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 		public TextView level;
 		public RatingBar rating;
 		public Chronometer timer;
-		public Button colourIndicator;
+		public TextView colourIndicator;
 		private View v;
 
 		public ViewHolder(View view) {
@@ -82,7 +81,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 			level = (TextView) v.findViewById(R.id.DBLevel);
 			rating = (RatingBar) v.findViewById(R.id.DBratingBar);
 			timer = (Chronometer) v.findViewById(R.id.DBTime);
-			colourIndicator = (Button) v.findViewById(R.id.colour_indecator);
+			colourIndicator = (TextView) v.findViewById(R.id.colour_indecator);
 		}
 
 

@@ -41,7 +41,7 @@ public class SensorProcess {
 	}
 
 	public boolean process(double x, double y) {
-		r = sqrt((pow(x, 2) + pow(y, 2)));
+		r = sqrt(pow(x, 2) + pow(y, 2));
 		return (r >= 0.0 && r <= r_level);
 	}
 
