@@ -8,6 +8,6 @@
     <dimen name="list_item_avatar_size">40dp</dimen>
     <dimen name="circle_width">10dip</dimen>
     <dimen name="circle_stroke">2dip</dimen>
-    <dimen name="max_recycler">320dp</dimen>
+    <dimen name="max_recycler">300dp</dimen>
     <dimen name="noPadding">0dp</dimen>
 </resources>

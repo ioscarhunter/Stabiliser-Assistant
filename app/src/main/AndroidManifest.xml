@@ -38,7 +38,7 @@
             android:label="@string/title_activity_sender"
             android:theme="@style/Theme.AppCompat.Light.DialogWhenLarge"/>
         <activity
-            android:name=".UI.Database.DatabaseActivity"
+            android:name=".UI.Database.DetailedDatabaseActivity"
             android:label="@string/title_activity_database"
             android:theme="@style/Theme.DesignDemo"/>
     </application>

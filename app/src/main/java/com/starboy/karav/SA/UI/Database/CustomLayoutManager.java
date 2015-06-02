@@ -18,7 +18,8 @@ public class CustomLayoutManager extends LinearLayoutManager {
 
 	@Override
 	public int getPaddingLeft() {
-		return Math.round(mParentWidth / 2f - mItemWidth / 2f);
+		if (mParentWidth > mItemWidth) return Math.round(mParentWidth / 2f - mItemWidth / 2f);
+		else return 0;
 	}
 
 	@Override
