@@ -1,11 +1,13 @@
 package com.starboy.karav.SA.UI.Database;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.starboy.karav.SA.Database.DatabaseHelper;
 import com.starboy.karav.SA.Database.Flight;
@@ -15,19 +17,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class DatabaseActivity extends AppCompatActivity {
+public class DatabaseActivity extends AppCompatActivity implements DatabaseSumFragment.OnFragmentInteractionListener {
 
 
 	private RecyclerView mRecyclerView;
-	private RecyclerView.Adapter mAdapter;
+	private CustomAdapter mAdapter;
 	private RecyclerView.LayoutManager mLayoutManager;
 	private DatabaseHelper dbHelper;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_database);
+		getFragmentManager().beginTransaction().add(R.id.backdrop, DatabaseSumFragment.newInstance()).commit();
 //		setStatusBarColour(R.color.green_dark_leaf);
 //		setActionBarColour(getResources().getString(R.string.database), R.color.green_tea);
 		final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -42,12 +44,11 @@ public class DatabaseActivity extends AppCompatActivity {
 
 		mRecyclerView.setHasFixedSize(true);
 
-		mLayoutManager = new LinearLayoutManager(DatabaseActivity.this);
+		mLayoutManager = new CustomLayoutManager(DatabaseActivity.this, mRecyclerView.getWidth(), 10);
 		mRecyclerView.setLayoutManager(mLayoutManager);
 
 		mAdapter = new CustomAdapter(DatabaseActivity.this, initPlayer());
 		mRecyclerView.setAdapter(mAdapter);
-
 	}
 
 	private List<Flight> initPlayer() {
@@ -76,5 +77,27 @@ public class DatabaseActivity extends AppCompatActivity {
 //
 
 		return dataset;
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.sample_actions, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case android.R.id.home:
+				finish();
+				return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
+
+	@Override
+	public void onFragmentInteraction(Uri uri) {
+
 	}
 }

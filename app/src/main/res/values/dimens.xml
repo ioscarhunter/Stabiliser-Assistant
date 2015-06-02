@@ -3,9 +3,11 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="detail_backdrop_height">256dp</dimen>
-    <dimen name="card_margin">6dp</dimen>
+    <dimen name="card_margin">4dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="list_item_avatar_size">40dp</dimen>
-    <dimen name="circle_width">9dip</dimen>
-    <dimen name="circle_stroke">3dip</dimen>
+    <dimen name="circle_width">10dip</dimen>
+    <dimen name="circle_stroke">2dip</dimen>
+    <dimen name="max_recycler">320dp</dimen>
+    <dimen name="noPadding">0dp</dimen>
 </resources>

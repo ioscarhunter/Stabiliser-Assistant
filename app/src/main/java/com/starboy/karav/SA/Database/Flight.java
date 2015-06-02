@@ -27,11 +27,13 @@ public class Flight {
 	private TimeZone tz;
 
 	private DateFormat iso8601Format;
+	private DateFormat readableFormat;
 
 	private Flight() {
 		tz = TimeZone.getDefault();
 		iso8601Format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
 		iso8601Format.setTimeZone(tz);
+		readableFormat = new SimpleDateFormat("dd/MM/yyyy");
 	}
 
 	public Flight(int total, int bal, int level, int takeTime, Date flightDate) {
@@ -58,6 +60,7 @@ public class Flight {
 	}
 
 	public Flight(int total, int bal, int level, int takeTime) {
+		this();
 		this.total = total;
 		this.bal = bal;
 		this.level = level;
@@ -124,7 +127,15 @@ public class Flight {
 	}
 
 	public String getFlightDateString() {
-		return iso8601Format.format(new Date());
+		return iso8601Format.format(flightDate);
+	}
+
+	public int getPercent() {
+		return (int) Math.floor(100 * bal / total);
+	}
+
+	public String getReadableDate() {
+		return readableFormat.format(flightDate);
 	}
 
 	public class Column {

@@ -31,6 +31,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 		mContext = context;
 	}
 
+	public int getItemWidth() {
+		return v.getWidth();
+	}
+
 	@Override
 	public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		v = LayoutInflater.from(mContext).inflate(R.layout.db_display, parent, false);
@@ -44,6 +48,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 		viewHolder.rating.setNumStars(flight.getRating());
 		viewHolder.timer.setBase(SystemClock.elapsedRealtime() - flight.getTakeTime());
 		viewHolder.colourIndicator.setBackgroundResource(getIndicator(flight.getRating()));
+		viewHolder.percent.setText(flight.getPercent() + "%");
+		viewHolder.date.setText(flight.getReadableDate());
+
 	}
 
 	private int getCharLevel(int level) {
@@ -73,6 +80,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 		public RatingBar rating;
 		public Chronometer timer;
 		public TextView colourIndicator;
+		public TextView percent;
+		public TextView date;
 		private View v;
 
 		public ViewHolder(View view) {
@@ -82,6 +91,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 			rating = (RatingBar) v.findViewById(R.id.DBratingBar);
 			timer = (Chronometer) v.findViewById(R.id.DBTime);
 			colourIndicator = (TextView) v.findViewById(R.id.colour_indecator);
+			percent = (TextView) v.findViewById(R.id.percentTV);
+			date = (TextView) v.findViewById(R.id.dateTV);
 		}
 
 
